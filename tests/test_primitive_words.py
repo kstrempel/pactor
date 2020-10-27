@@ -11,10 +11,14 @@ class TestPrimitiveWords:
       return vm.stack
 
   def test_dup_stack(self):
-      stack = self.__run_script("10 dup")
+      stack = self.__run_script('10 dup')
       assert stack.pop() == 10
       assert stack.pop() == 10
 
   def test_word_combined_stack(self):
-      stack = self.__run_script("10 dup *")
+      stack = self.__run_script('10 dup *')
       assert stack.pop() == 100
+
+  def test_swap_stack(self):
+      stack = self.__run_script('"World" "Hello" swap +')
+      assert stack.pop() == "HelloWorld"
