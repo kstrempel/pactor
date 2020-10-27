@@ -11,7 +11,7 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7")
         buf.write("\25\4\2\t\2\4\3\t\3\3\2\7\2\b\n\2\f\2\16\2\13\13\2\3\2")
         buf.write("\3\2\3\3\3\3\3\3\3\3\5\3\23\n\3\3\3\2\2\4\2\4\2\2\2\26")
         buf.write("\2\t\3\2\2\2\4\22\3\2\2\2\6\b\5\4\3\2\7\6\3\2\2\2\b\13")
@@ -34,7 +34,8 @@ class PactorParser ( Parser ):
 
     literalNames = [  ]
 
-    symbolicNames = [ "<INVALID>", "NUMBER", "FLOAT", "STRING", "WORD" ]
+    symbolicNames = [ "<INVALID>", "NUMBER", "FLOAT", "STRING", "WORD", 
+                      "WS" ]
 
     RULE_program = 0
     RULE_commands = 1
@@ -46,6 +47,7 @@ class PactorParser ( Parser ):
     FLOAT=2
     STRING=3
     WORD=4
+    WS=5
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)

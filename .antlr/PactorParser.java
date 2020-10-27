@@ -16,7 +16,7 @@ public class PactorParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		NUMBER=1, FLOAT=2, STRING=3, WORD=4;
+		NUMBER=1, FLOAT=2, STRING=3, WORD=4, WS=5;
 	public static final int
 		RULE_program = 0, RULE_commands = 1;
 	private static String[] makeRuleNames() {
@@ -33,7 +33,7 @@ public class PactorParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "NUMBER", "FLOAT", "STRING", "WORD"
+			null, "NUMBER", "FLOAT", "STRING", "WORD", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -224,7 +224,7 @@ public class PactorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6\25\4\2\t\2\4\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\25\4\2\t\2\4\3"+
 		"\t\3\3\2\7\2\b\n\2\f\2\16\2\13\13\2\3\2\3\2\3\3\3\3\3\3\3\3\5\3\23\n\3"+
 		"\3\3\2\2\4\2\4\2\2\2\26\2\t\3\2\2\2\4\22\3\2\2\2\6\b\5\4\3\2\7\6\3\2\2"+
 		"\2\b\13\3\2\2\2\t\7\3\2\2\2\t\n\3\2\2\2\n\f\3\2\2\2\13\t\3\2\2\2\f\r\7"+
