@@ -78,6 +78,13 @@ class SwapNode():
     vm.stack.append(value1)
     vm.stack.append(value2)
 
+class PythonNode():
+  def run(self, vm: VM):
+    python_code = vm.stack.pop()
+    result = eval(python_code)
+    vm.stack.append(result)
+
+
 class CallWordNode():
     def __init__(self, word):
       self.__word = word

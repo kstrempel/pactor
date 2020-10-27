@@ -36,5 +36,3 @@ MATH_WORDS
 WS
 : [ \n\r\t,]+ -> skip
 ;
-
-

@@ -32,6 +32,7 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == '/': self.__ast.add_node(DivideNode())
         elif word == 'dup': self.__ast.add_node(DupNode())
         elif word == 'swap': self.__ast.add_node(SwapNode())
+        elif word == 'python': self.__ast.add_node(PythonNode())
         else:
           self.__ast.add_node(CallWordNode(word))
 
