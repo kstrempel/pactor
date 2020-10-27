@@ -32,6 +32,7 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == '/': self.__ast.add_node(DivideNode())
         elif word == 'dup': self.__ast.add_node(DupNode())
         elif word == 'swap': self.__ast.add_node(SwapNode())
+        elif word == 'call': self.__ast.add_node(CallNode())
         elif word == 'python': self.__ast.add_node(PythonNode())
         else:
           self.__ast.add_node(CallWordNode(word))
@@ -50,5 +51,11 @@ class ASTVisitor(ParseTreeVisitor):
                                      len(ctx.params_out)))
         return result
 
-    def visitCommandIgnore(self, ctx:PactorParser.CommandIgnoreContext):
-        return self.visitChildren(ctx)
+    def visitQuote(self, ctx:PactorParser.QuoteContext):
+        save_ast = self.__ast
+        self.__ast = Ast()
+        result = self.visitChildren(ctx)
+        quote_ast = self.__ast
+        self.__ast = save_ast
+        self.__ast.add_node(QuoteNode(quote_ast))
+        return result

@@ -19,6 +19,11 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#quote.
+    def visitQuote(self, ctx:PactorParser.QuoteContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PactorParser#pushNumberToStack.
     def visitPushNumberToStack(self, ctx:PactorParser.PushNumberToStackContext):
         return self.visitChildren(ctx)

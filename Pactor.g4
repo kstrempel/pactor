@@ -6,6 +6,7 @@ program
 
 commands
 : name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' body=commands+ ';'  # createWord
+| '[' value=commands+ ']'  # quote
 | value=NUMBER             # pushNumberToStack
 | value=FLOAT              # pushFloatToStack
 | value=STRING             # pushStringToStack

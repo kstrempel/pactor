@@ -22,6 +22,10 @@ class VM:
     for node in self.__ast.nodes:
       node.run(self)
 
+  def run_ast(self, ast):
+    for node in ast.nodes:
+      node.run(self)
+
   def run_word(self, word: str):
     word_node = self.__words[word]
     inner_vm = self.create_inner_vm(word_node.from_stack)

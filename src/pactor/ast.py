@@ -84,6 +84,21 @@ class PythonNode():
     result = eval(python_code)
     vm.stack.append(result)
 
+class CallNode():
+  def run(self, vm: VM):
+    quote = vm.stack.pop()
+    vm.run_ast(quote.ast)
+
+class QuoteNode():
+  def __init__(self, ast):
+    self.__ast = ast
+
+  @property
+  def ast(self):
+    return self.__ast
+
+  def run(self, vm: VM):
+      vm.stack.append(self)
 
 class CallWordNode():
     def __init__(self, word):
