@@ -40,6 +40,12 @@ class StringNode():
   def run(self, vm: VM):
       vm.stack.append(self.__value)
 
+class BooleanNode():
+  def __init__(self, value):
+    self.__value = value
+  def run(self, vm: VM):
+      vm.stack.append(self.__value)
+
 class AddNode():
   def run(self, vm: VM):
     value1 = vm.stack.pop()

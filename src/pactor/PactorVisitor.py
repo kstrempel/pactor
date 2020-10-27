@@ -19,8 +19,23 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#quote.
-    def visitQuote(self, ctx:PactorParser.QuoteContext):
+    # Visit a parse tree produced by PactorParser#createIf.
+    def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#createWhen.
+    def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#createTimes.
+    def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#createQuote.
+    def visitCreateQuote(self, ctx:PactorParser.CreateQuoteContext):
         return self.visitChildren(ctx)
 
 
@@ -39,13 +54,13 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#commandRun.
-    def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
+    # Visit a parse tree produced by PactorParser#pushBooleanToStack.
+    def visitPushBooleanToStack(self, ctx:PactorParser.PushBooleanToStackContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#commandIgnore.
-    def visitCommandIgnore(self, ctx:PactorParser.CommandIgnoreContext):
+    # Visit a parse tree produced by PactorParser#commandRun.
+    def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
         return self.visitChildren(ctx)
 
 

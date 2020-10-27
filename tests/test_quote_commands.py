@@ -1,7 +1,7 @@
 from pactor.compiler import load_script
 from pactor.vm import VM
 
-class TestPrimitiveWords:
+class TestQuoteCommands:
 
   def __run_script(self, script):
       ast = load_script(script)
@@ -17,4 +17,7 @@ class TestPrimitiveWords:
 
     vm = self.__run_script(script)
     assert 100 == vm.stack.pop()
+
+
+
 

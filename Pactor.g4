@@ -1,17 +1,29 @@
 grammar Pactor;
 
 program
-: commands* EOF
+: create_words* (statement|commands|quote)* EOF
+;
+
+create_words
+: name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' body=statement+ ';'  # createWord
 ;
 
 commands
-: name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' body=commands+ ';'  # createWord
-| '[' value=commands+ ']'  # quote
-| value=NUMBER             # pushNumberToStack
+: truepath=quote falsepath=quote 'if' # createIf
+| path=quote 'when'                   # createWhen
+| block=quote 'times'                 # createTimes
+;
+
+quote
+: '[' statement* ']' # createQuote
+;
+
+statement
+: value=NUMBER             # pushNumberToStack
 | value=FLOAT              # pushFloatToStack
 | value=STRING             # pushStringToStack
+| value=BOOLEAN            # pushBooleanToStack
 | value=(WORD|MATH_WORDS)  # commandRun
-| WS                       # commandIgnore
 ;
 
 NUMBER
@@ -24,6 +36,10 @@ FLOAT
 
 STRING
 :  '"' ( ~'"' | '\\' '"' )* '"'
+;
+
+BOOLEAN
+: ('t'|'f')
 ;
 
 WORD

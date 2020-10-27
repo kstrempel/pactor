@@ -11,7 +11,6 @@ class ASTVisitor(ParseTreeVisitor):
       self.__ast = Ast()
       return self.visitChildren(ctx)
 
-
     def visitPushNumberToStack(self, ctx:PactorParser.PushNumberToStackContext):
         self.__ast.add_node(NumberNode(ctx.value.text))
         return self.visitChildren(ctx)
@@ -22,6 +21,10 @@ class ASTVisitor(ParseTreeVisitor):
 
     def visitPushStringToStack(self, ctx:PactorParser.PushStringToStackContext):
         self.__ast.add_node(StringNode(ctx.value.text[1:-1]))
+        return self.visitChildren(ctx)
+
+    def visitPushBooleanToStack(self, ctx:PactorParser.PushBooleanToStackContext):
+        self.__ast.add_node(BooleanNode(ctx.value.text=='t'))
         return self.visitChildren(ctx)
 
     def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
@@ -51,7 +54,8 @@ class ASTVisitor(ParseTreeVisitor):
                                      len(ctx.params_out)))
         return result
 
-    def visitQuote(self, ctx:PactorParser.QuoteContext):
+    # TODO: solve quote in quote
+    def visitCreateQuote(self, ctx:PactorParser.CreateQuoteContext):
         save_ast = self.__ast
         self.__ast = Ast()
         result = self.visitChildren(ctx)
@@ -59,3 +63,14 @@ class ASTVisitor(ParseTreeVisitor):
         self.__ast = save_ast
         self.__ast.add_node(QuoteNode(quote_ast))
         return result
+
+    def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
+        return self.visitChildren(ctx)
+
+
+    def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
+        return self.visitChildren(ctx)
+
+
+    def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
+        return self.visitChildren(ctx)
