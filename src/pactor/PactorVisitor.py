@@ -14,6 +14,11 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#createWord.
+    def visitCreateWord(self, ctx:PactorParser.CreateWordContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PactorParser#pushNumberToStack.
     def visitPushNumberToStack(self, ctx:PactorParser.PushNumberToStackContext):
         return self.visitChildren(ctx)
@@ -31,6 +36,11 @@ class PactorVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PactorParser#commandRun.
     def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#commandIgnore.
+    def visitCommandIgnore(self, ctx:PactorParser.CommandIgnoreContext):
         return self.visitChildren(ctx)
 
 

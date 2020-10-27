@@ -18,6 +18,10 @@ class Ast:
   def nodes(self):
     return self.__nodes
 
+  @property
+  def first_node(self):
+    return self.__nodes[0]
+
 class NumberNode():
   def __init__(self, value):
     self.__value = int(value)
@@ -74,5 +78,31 @@ class SwapNode():
     vm.stack.append(value1)
     vm.stack.append(value2)
 
+class CallWordNode():
+    def __init__(self, word):
+      self.__word = word
+    def run(self, vm : VM):
+      vm.run_word(self.__word)
 
+class WordNode():
+    def __init__(self, name, ast, from_stack, to_stack):
+      self.__name = name
+      self.__ast = ast
+      self.__from_stack = from_stack
+      self.__to_stack = to_stack
+
+    @property
+    def from_stack(self):
+      return self.__from_stack
+
+    @property
+    def to_stack(self):
+      return self.__to_stack
+
+    @property
+    def ast(self):
+      return self.__ast
+
+    def run(self, vm: VM):
+      vm.register_word(self.__name, self)
 

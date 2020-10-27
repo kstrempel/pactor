@@ -5,10 +5,12 @@ program
 ;
 
 commands
-: value=NUMBER                      # pushNumberToStack
-| value=FLOAT                       # pushFloatToStack
-| value=STRING                      # pushStringToStack
-| value=WORD                        # commandRun
+: name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' body=commands+ ';'  # createWord
+| value=NUMBER             # pushNumberToStack
+| value=FLOAT              # pushFloatToStack
+| value=STRING             # pushStringToStack
+| value=(WORD|MATH_WORDS)  # commandRun
+| WS                       # commandIgnore
 ;
 
 NUMBER
@@ -24,12 +26,15 @@ STRING
 ;
 
 WORD
-: [a-z]+ | '+' | '-' | '*' | '/'
+: [a-z0-9]+
 ;
 
+MATH_WORDS
+: '+' | '-' | '*' | '/'
+;
 
 WS
-: [ \n\r\t,] + -> skip
+: [ \n\r\t,]+ -> skip
 ;
 
 
