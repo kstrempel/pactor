@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* kstrempel <kai.strempel@takeaway.com>
+* kstrempel <kstrempel@gmail.com>
