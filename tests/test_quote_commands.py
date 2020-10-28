@@ -18,6 +18,12 @@ class TestQuoteCommands:
     vm = self.__run_script(script)
     assert 100 == vm.stack.pop()
 
+  def test_quote_and_when(self):
+    script = """
+    10 t [ 10 * ] when
+    """
 
+    vm = self.__run_script(script)
+    assert 100 == vm.stack.pop()
 
 

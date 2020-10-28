@@ -69,8 +69,9 @@ class ASTVisitor(ParseTreeVisitor):
 
 
     def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
-        return self.visitChildren(ctx)
-
+        result = self.visitChildren(ctx)
+        self.__ast.add_node(WhenNode())
+        return result
 
     def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
         return self.visitChildren(ctx)

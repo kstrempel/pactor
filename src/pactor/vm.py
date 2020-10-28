@@ -45,3 +45,7 @@ class VM:
   @property
   def words(self):
     return self.__words
+
+  @property
+  def ast(self):
+    return self.__ast

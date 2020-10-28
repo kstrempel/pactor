@@ -95,6 +95,13 @@ class CallNode():
     quote = vm.stack.pop()
     vm.run_ast(quote.ast)
 
+class WhenNode():
+  def run(self, vm: VM):
+    quote = vm.stack.pop()
+    is_true = vm.stack.pop()
+    if is_true:
+      vm.run_ast(quote.ast)
+
 class QuoteNode():
   def __init__(self, ast):
     self.__ast = ast
