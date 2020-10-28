@@ -9,7 +9,7 @@ create_words
 ;
 
 commands
-: truepath=quote falsepath=quote 'if' # createIf
+: quote quote 'if' # createIf
 | quote 'when'                        # createWhen
 | quote 'times'                       # createTimes
 ;

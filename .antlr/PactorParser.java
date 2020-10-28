@@ -315,8 +315,6 @@ public class PactorParser extends Parser {
 		}
 	}
 	public static class CreateIfContext extends CommandsContext {
-		public QuoteContext truepath;
-		public QuoteContext falsepath;
 		public List<QuoteContext> quote() {
 			return getRuleContexts(QuoteContext.class);
 		}
@@ -350,9 +348,9 @@ public class PactorParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(50);
-				((CreateIfContext)_localctx).truepath = quote();
+				quote();
 				setState(51);
-				((CreateIfContext)_localctx).falsepath = quote();
+				quote();
 				setState(52);
 				match(T__5);
 				}

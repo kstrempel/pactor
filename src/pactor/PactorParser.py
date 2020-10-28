@@ -331,8 +331,6 @@ class PactorParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PactorParser.CommandsContext
             super().__init__(parser)
-            self.truepath = None # QuoteContext
-            self.falsepath = None # QuoteContext
             self.copyFrom(ctx)
 
         def quote(self, i:int=None):
@@ -396,9 +394,9 @@ class PactorParser ( Parser ):
                 localctx = PactorParser.CreateIfContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 50
-                localctx.truepath = self.quote()
+                self.quote()
                 self.state = 51
-                localctx.falsepath = self.quote()
+                self.quote()
                 self.state = 52
                 self.match(PactorParser.T__5)
                 pass

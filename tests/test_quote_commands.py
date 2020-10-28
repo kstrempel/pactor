@@ -26,6 +26,13 @@ class TestQuoteCommands:
     vm = self.__run_script(script)
     assert 100 == vm.stack.pop()
 
+    script = """
+    10 f [ 10 * ] when
+    """
+
+    vm = self.__run_script(script)
+    assert 10 == vm.stack.pop()
+
 
   def test_quote_and_times(self):
     script = """
@@ -35,4 +42,18 @@ class TestQuoteCommands:
     vm = self.__run_script(script)
     assert 1024 == vm.stack.pop()
 
+  def test_quote_and_if(self):
+    script = """
+    1 t [ 1 + ] [ 1 - ] if
+    """
+
+    vm = self.__run_script(script)
+    assert 2 == vm.stack.pop()
+
+    script = """
+    1 f [ 1 + ] [ 1 - ] if
+    """
+
+    vm = self.__run_script(script)
+    assert 0 == vm.stack.pop()
 
