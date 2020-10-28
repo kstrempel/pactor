@@ -1,6 +1,12 @@
 from pactor.vm import VM
 from pactor.node_stack_helper import two_pop, push, pop
 
+class BooleanNode():
+  def __init__(self, value):
+    self.__value = value
+  def run(self, vm: VM):
+      vm.stack.append(self.__value)
+
 class EqualNode:
   def run(self, vm: VM):
     value1, value2 = two_pop(vm)

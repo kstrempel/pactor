@@ -1,6 +1,11 @@
 from antlr4 import *
 from pactor.ast import *
 from pactor.nodes_expression import *
+from pactor.nodes_math import *
+from pactor.nodes_blocks import *
+from pactor.nodes_primitives import *
+from pactor.nodes_commands import *
+from pactor.nodes_stack import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
