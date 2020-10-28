@@ -54,6 +54,11 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#pushExpressionToStack.
+    def visitPushExpressionToStack(self, ctx:PactorParser.PushExpressionToStackContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PactorParser#pushBooleanToStack.
     def visitPushBooleanToStack(self, ctx:PactorParser.PushBooleanToStackContext):
         return self.visitChildren(ctx)

@@ -11,23 +11,23 @@ else:
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\23")
-        buf.write("R\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\7\2\16\n")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\24")
+        buf.write("S\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\7\2\16\n")
         buf.write("\2\f\2\16\2\21\13\2\3\2\3\2\3\2\7\2\26\n\2\f\2\16\2\31")
         buf.write("\13\2\3\2\3\2\3\3\3\3\3\3\7\3 \n\3\f\3\16\3#\13\3\3\3")
         buf.write("\3\3\7\3\'\n\3\f\3\16\3*\13\3\3\3\3\3\3\3\6\3/\n\3\r\3")
         buf.write("\16\3\60\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3")
         buf.write("\4\5\4?\n\4\3\5\3\5\3\5\7\5D\n\5\f\5\16\5G\13\5\3\5\3")
-        buf.write("\5\3\6\3\6\3\6\3\6\3\6\5\6P\n\6\3\6\2\2\7\2\4\6\b\n\2")
-        buf.write("\3\3\2\21\22\2[\2\17\3\2\2\2\4\34\3\2\2\2\6>\3\2\2\2\b")
-        buf.write("@\3\2\2\2\nO\3\2\2\2\f\16\5\4\3\2\r\f\3\2\2\2\16\21\3")
-        buf.write("\2\2\2\17\r\3\2\2\2\17\20\3\2\2\2\20\27\3\2\2\2\21\17")
+        buf.write("\5\3\6\3\6\3\6\3\6\3\6\3\6\5\6Q\n\6\3\6\2\2\7\2\4\6\b")
+        buf.write("\n\2\3\3\2\22\23\2]\2\17\3\2\2\2\4\34\3\2\2\2\6>\3\2\2")
+        buf.write("\2\b@\3\2\2\2\nP\3\2\2\2\f\16\5\4\3\2\r\f\3\2\2\2\16\21")
+        buf.write("\3\2\2\2\17\r\3\2\2\2\17\20\3\2\2\2\20\27\3\2\2\2\21\17")
         buf.write("\3\2\2\2\22\26\5\n\6\2\23\26\5\6\4\2\24\26\5\b\5\2\25")
         buf.write("\22\3\2\2\2\25\23\3\2\2\2\25\24\3\2\2\2\26\31\3\2\2\2")
         buf.write("\27\25\3\2\2\2\27\30\3\2\2\2\30\32\3\2\2\2\31\27\3\2\2")
-        buf.write("\2\32\33\7\2\2\3\33\3\3\2\2\2\34\35\7\21\2\2\35!\7\3\2")
-        buf.write("\2\36 \7\21\2\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"")
-        buf.write("\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$(\7\4\2\2%\'\7\21\2\2&%")
+        buf.write("\2\32\33\7\2\2\3\33\3\3\2\2\2\34\35\7\22\2\2\35!\7\3\2")
+        buf.write("\2\36 \7\22\2\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"")
+        buf.write("\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$(\7\4\2\2%\'\7\22\2\2&%")
         buf.write("\3\2\2\2\'*\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*(\3")
         buf.write("\2\2\2+,\7\5\2\2,.\7\6\2\2-/\5\n\6\2.-\3\2\2\2/\60\3\2")
         buf.write("\2\2\60.\3\2\2\2\60\61\3\2\2\2\61\62\3\2\2\2\62\63\7\7")
@@ -36,10 +36,10 @@ def serializedATN():
         buf.write("\5\2<=\7\n\2\2=?\3\2\2\2>\64\3\2\2\2>8\3\2\2\2>;\3\2\2")
         buf.write("\2?\7\3\2\2\2@E\7\13\2\2AD\5\b\5\2BD\5\n\6\2CA\3\2\2\2")
         buf.write("CB\3\2\2\2DG\3\2\2\2EC\3\2\2\2EF\3\2\2\2FH\3\2\2\2GE\3")
-        buf.write("\2\2\2HI\7\f\2\2I\t\3\2\2\2JP\7\r\2\2KP\7\16\2\2LP\7\17")
-        buf.write("\2\2MP\7\20\2\2NP\t\2\2\2OJ\3\2\2\2OK\3\2\2\2OL\3\2\2")
-        buf.write("\2OM\3\2\2\2ON\3\2\2\2P\13\3\2\2\2\f\17\25\27!(\60>CE")
-        buf.write("O")
+        buf.write("\2\2\2HI\7\f\2\2I\t\3\2\2\2JQ\7\16\2\2KQ\7\17\2\2LQ\7")
+        buf.write("\20\2\2MQ\7\r\2\2NQ\7\21\2\2OQ\t\2\2\2PJ\3\2\2\2PK\3\2")
+        buf.write("\2\2PL\3\2\2\2PM\3\2\2\2PN\3\2\2\2PO\3\2\2\2Q\13\3\2\2")
+        buf.write("\2\f\17\25\27!(\60>CEP")
         return buf.getvalue()
 
 
@@ -58,8 +58,9 @@ class PactorParser ( Parser ):
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "NUMBER", "FLOAT", 
-                      "STRING", "BOOLEAN", "WORD", "MATH_WORDS", "WS" ]
+                      "<INVALID>", "<INVALID>", "<INVALID>", "EXPRESSIONS", 
+                      "NUMBER", "FLOAT", "STRING", "BOOLEAN", "WORD", "MATH_WORDS", 
+                      "WS" ]
 
     RULE_program = 0
     RULE_create_words = 1
@@ -80,13 +81,14 @@ class PactorParser ( Parser ):
     T__7=8
     T__8=9
     T__9=10
-    NUMBER=11
-    FLOAT=12
-    STRING=13
-    BOOLEAN=14
-    WORD=15
-    MATH_WORDS=16
-    WS=17
+    EXPRESSIONS=11
+    NUMBER=12
+    FLOAT=13
+    STRING=14
+    BOOLEAN=15
+    WORD=16
+    MATH_WORDS=17
+    WS=18
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -167,7 +169,7 @@ class PactorParser ( Parser ):
             self.state = 21
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PactorParser.T__8) | (1 << PactorParser.NUMBER) | (1 << PactorParser.FLOAT) | (1 << PactorParser.STRING) | (1 << PactorParser.BOOLEAN) | (1 << PactorParser.WORD) | (1 << PactorParser.MATH_WORDS))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PactorParser.T__8) | (1 << PactorParser.EXPRESSIONS) | (1 << PactorParser.NUMBER) | (1 << PactorParser.FLOAT) | (1 << PactorParser.STRING) | (1 << PactorParser.BOOLEAN) | (1 << PactorParser.WORD) | (1 << PactorParser.MATH_WORDS))) != 0):
                 self.state = 19
                 self._errHandler.sync(self)
                 la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
@@ -298,7 +300,7 @@ class PactorParser ( Parser ):
                 self.state = 46 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PactorParser.NUMBER) | (1 << PactorParser.FLOAT) | (1 << PactorParser.STRING) | (1 << PactorParser.BOOLEAN) | (1 << PactorParser.WORD) | (1 << PactorParser.MATH_WORDS))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PactorParser.EXPRESSIONS) | (1 << PactorParser.NUMBER) | (1 << PactorParser.FLOAT) | (1 << PactorParser.STRING) | (1 << PactorParser.BOOLEAN) | (1 << PactorParser.WORD) | (1 << PactorParser.MATH_WORDS))) != 0)):
                     break
 
             self.state = 48
@@ -486,7 +488,7 @@ class PactorParser ( Parser ):
             self.state = 67
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PactorParser.T__8) | (1 << PactorParser.NUMBER) | (1 << PactorParser.FLOAT) | (1 << PactorParser.STRING) | (1 << PactorParser.BOOLEAN) | (1 << PactorParser.WORD) | (1 << PactorParser.MATH_WORDS))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PactorParser.T__8) | (1 << PactorParser.EXPRESSIONS) | (1 << PactorParser.NUMBER) | (1 << PactorParser.FLOAT) | (1 << PactorParser.STRING) | (1 << PactorParser.BOOLEAN) | (1 << PactorParser.WORD) | (1 << PactorParser.MATH_WORDS))) != 0):
                 self.state = 65
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
@@ -494,7 +496,7 @@ class PactorParser ( Parser ):
                     self.state = 63
                     self.quote()
                     pass
-                elif token in [PactorParser.NUMBER, PactorParser.FLOAT, PactorParser.STRING, PactorParser.BOOLEAN, PactorParser.WORD, PactorParser.MATH_WORDS]:
+                elif token in [PactorParser.EXPRESSIONS, PactorParser.NUMBER, PactorParser.FLOAT, PactorParser.STRING, PactorParser.BOOLEAN, PactorParser.WORD, PactorParser.MATH_WORDS]:
                     self.state = 64
                     self.statement()
                     pass
@@ -600,6 +602,23 @@ class PactorParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
+    class PushExpressionToStackContext(StatementContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a PactorParser.StatementContext
+            super().__init__(parser)
+            self.value = None # Token
+            self.copyFrom(ctx)
+
+        def EXPRESSIONS(self):
+            return self.getToken(PactorParser.EXPRESSIONS, 0)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPushExpressionToStack" ):
+                return visitor.visitPushExpressionToStack(self)
+            else:
+                return visitor.visitChildren(self)
+
+
     class CommandRunContext(StatementContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PactorParser.StatementContext
@@ -626,7 +645,7 @@ class PactorParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_statement)
         self._la = 0 # Token type
         try:
-            self.state = 77
+            self.state = 78
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [PactorParser.NUMBER]:
@@ -647,16 +666,22 @@ class PactorParser ( Parser ):
                 self.state = 74
                 localctx.value = self.match(PactorParser.STRING)
                 pass
-            elif token in [PactorParser.BOOLEAN]:
-                localctx = PactorParser.PushBooleanToStackContext(self, localctx)
+            elif token in [PactorParser.EXPRESSIONS]:
+                localctx = PactorParser.PushExpressionToStackContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
                 self.state = 75
+                localctx.value = self.match(PactorParser.EXPRESSIONS)
+                pass
+            elif token in [PactorParser.BOOLEAN]:
+                localctx = PactorParser.PushBooleanToStackContext(self, localctx)
+                self.enterOuterAlt(localctx, 5)
+                self.state = 76
                 localctx.value = self.match(PactorParser.BOOLEAN)
                 pass
             elif token in [PactorParser.WORD, PactorParser.MATH_WORDS]:
                 localctx = PactorParser.CommandRunContext(self, localctx)
-                self.enterOuterAlt(localctx, 5)
-                self.state = 76
+                self.enterOuterAlt(localctx, 6)
+                self.state = 77
                 localctx.value = self._input.LT(1)
                 _la = self._input.LA(1)
                 if not(_la==PactorParser.WORD or _la==PactorParser.MATH_WORDS):

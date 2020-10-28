@@ -1,5 +1,6 @@
 from antlr4 import *
 from pactor.ast import *
+from pactor.nodes_expression import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -50,6 +51,19 @@ class ASTVisitor(ParseTreeVisitor):
           self.ast.add_node(CallWordNode(word))
 
         return self.visitChildren(ctx)
+
+    def visitPushExpressionToStack(self, ctx:PactorParser.PushExpressionToStackContext):
+        exp = ctx.value.text
+        if exp == '=': self.ast.add_node(EqualNode())
+        elif exp == '>': self.ast.add_node(GreaterThanNode())
+        elif exp == '<': self.ast.add_node(SmallerThanNode())
+        elif exp == '>=': self.ast.add_node(GreaterEqualThanNode())
+        elif exp == '<=': self.ast.add_node(SmallerEqualThanNode())
+        elif exp == '!=': self.ast.add_node(NoEqualNode())
+        elif exp == 'not': self.ast.add_node(NotNode())
+        elif exp == 'and': self.ast.add_node(AndNode())
+        elif exp == 'or': self.ast.add_node(OrNode())
+
 
     def visitCreateWord(self, ctx:PactorParser.CreateWordContext):
         self.ast_increase()

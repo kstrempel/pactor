@@ -9,7 +9,7 @@ create_words
 ;
 
 commands
-: quote quote 'if' # createIf
+: quote quote 'if'                    # createIf
 | quote 'when'                        # createWhen
 | quote 'times'                       # createTimes
 ;
@@ -22,8 +22,13 @@ statement
 : value=NUMBER             # pushNumberToStack
 | value=FLOAT              # pushFloatToStack
 | value=STRING             # pushStringToStack
+| value=EXPRESSIONS        # pushExpressionToStack
 | value=BOOLEAN            # pushBooleanToStack
 | value=(WORD|MATH_WORDS)  # commandRun
+;
+
+EXPRESSIONS
+: '=' | '<' | '>' | '<=' | '>=' | '!=' | 'not' | 'and' | 'or'
 ;
 
 NUMBER

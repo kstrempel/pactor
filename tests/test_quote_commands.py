@@ -20,7 +20,6 @@ class TestQuoteCommands:
 
 
   def test_quote_in_quote_and_call(self):
-    import pdb; pdb.set_trace()
     script = """
     [10 10 [*] call] call
     """
