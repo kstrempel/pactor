@@ -4,77 +4,82 @@ from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
 
-    def get_ast(self):
-      return self.__ast
+    @property
+    def ast(self):
+      return self.__ast[-1]
+
+    def ast_increase(self):
+        self.__ast.append(Ast())
+        return self.ast
+
+    def ast_decrease(self):
+        decreased = self.__ast.pop()
+        return decreased
 
     def visitProgram(self, ctx:PactorParser.ProgramContext):
-      self.__ast = Ast()
+      self.__ast = [Ast()]
       return self.visitChildren(ctx)
 
     def visitPushNumberToStack(self, ctx:PactorParser.PushNumberToStackContext):
-        self.__ast.add_node(NumberNode(ctx.value.text))
+        self.ast.add_node(NumberNode(ctx.value.text))
         return self.visitChildren(ctx)
 
     def visitPushFloatToStack(self, ctx:PactorParser.PushFloatToStackContext):
-        self.__ast.add_node(FloatNode(ctx.value.text))
+        self.ast.add_node(FloatNode(ctx.value.text))
         return self.visitChildren(ctx)
 
     def visitPushStringToStack(self, ctx:PactorParser.PushStringToStackContext):
-        self.__ast.add_node(StringNode(ctx.value.text[1:-1]))
+        self.ast.add_node(StringNode(ctx.value.text[1:-1]))
         return self.visitChildren(ctx)
 
     def visitPushBooleanToStack(self, ctx:PactorParser.PushBooleanToStackContext):
-        self.__ast.add_node(BooleanNode(ctx.value.text=='t'))
+        self.ast.add_node(BooleanNode(ctx.value.text=='t'))
         return self.visitChildren(ctx)
 
     def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
         word = ctx.value.text
-        if word == '+': self.__ast.add_node(AddNode())
-        elif word == '-': self.__ast.add_node(MinusNode())
-        elif word == '*': self.__ast.add_node(MultiplyNode())
-        elif word == '/': self.__ast.add_node(DivideNode())
-        elif word == 'dup': self.__ast.add_node(DupNode())
-        elif word == 'swap': self.__ast.add_node(SwapNode())
-        elif word == 'call': self.__ast.add_node(CallNode())
-        elif word == 'python': self.__ast.add_node(PythonNode())
+        if word == '+': self.ast.add_node(AddNode())
+        elif word == '-': self.ast.add_node(MinusNode())
+        elif word == '*': self.ast.add_node(MultiplyNode())
+        elif word == '/': self.ast.add_node(DivideNode())
+        elif word == 'dup': self.ast.add_node(DupNode())
+        elif word == 'swap': self.ast.add_node(SwapNode())
+        elif word == 'call': self.ast.add_node(CallNode())
+        elif word == 'python': self.ast.add_node(PythonNode())
         else:
-          self.__ast.add_node(CallWordNode(word))
+          self.ast.add_node(CallWordNode(word))
 
         return self.visitChildren(ctx)
 
     def visitCreateWord(self, ctx:PactorParser.CreateWordContext):
-        save_ast = self.__ast
-        self.__ast = Ast()
+        self.ast_increase()
         result = self.visitChildren(ctx)
-        word_ast = self.__ast
-        self.__ast = save_ast
-        self.__ast.add_node(WordNode(ctx.name.text,
-                                     word_ast,
-                                     len(ctx.params_in),
-                                     len(ctx.params_out)))
+        words_ast = self.ast_decrease()
+        self.ast.add_node(WordNode(ctx.name.text,
+                                   words_ast,
+                                   len(ctx.params_in),
+                                   len(ctx.params_out)))
         return result
 
     # TODO: solve quote in quote
     def visitCreateQuote(self, ctx:PactorParser.CreateQuoteContext):
-        save_ast = self.__ast
-        self.__ast = Ast()
+        self.ast_increase()
         result = self.visitChildren(ctx)
-        quote_ast = self.__ast
-        self.__ast = save_ast
-        self.__ast.add_node(QuoteNode(quote_ast))
+        quote_ast = self.ast_decrease()
+        self.ast.add_node(QuoteNode(quote_ast))
         return result
 
     def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
         result = self.visitChildren(ctx)
-        self.__ast.add_node(IfNode())
+        self.ast.add_node(IfNode())
         return result
 
     def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
         result = self.visitChildren(ctx)
-        self.__ast.add_node(WhenNode())
+        self.ast.add_node(WhenNode())
         return result
 
     def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
         result = self.visitChildren(ctx)
-        self.__ast.add_node(TimesNode())
+        self.ast.add_node(TimesNode())
         return result

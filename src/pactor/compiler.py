@@ -15,4 +15,4 @@ def __build_ast(inputstream : InputStream):
   tree = parser.program()
   visitor = ASTVisitor()
   visitor.visit(tree)
-  return visitor.get_ast()
+  return visitor.ast

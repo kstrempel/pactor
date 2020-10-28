@@ -15,7 +15,7 @@ commands
 ;
 
 quote
-: '[' statement* ']' # createQuote
+: '[' (quote|statement)* ']' # createQuote
 ;
 
 statement

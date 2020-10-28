@@ -18,6 +18,16 @@ class TestQuoteCommands:
     vm = self.__run_script(script)
     assert 100 == vm.stack.pop()
 
+
+  def test_quote_in_quote_and_call(self):
+    import pdb; pdb.set_trace()
+    script = """
+    [10 10 [*] call] call
+    """
+
+    vm = self.__run_script(script)
+    assert 100 == vm.stack.pop()
+
   def test_quote_and_when(self):
     script = """
     10 t [ 10 * ] when

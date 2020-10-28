@@ -400,6 +400,12 @@ public class PactorParser extends Parser {
 		}
 	}
 	public static class CreateQuoteContext extends QuoteContext {
+		public List<QuoteContext> quote() {
+			return getRuleContexts(QuoteContext.class);
+		}
+		public QuoteContext quote(int i) {
+			return getRuleContext(QuoteContext.class,i);
+		}
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
@@ -419,21 +425,40 @@ public class PactorParser extends Parser {
 			{
 			setState(62);
 			match(T__8);
-			setState(66);
+			setState(67);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__8) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
 				{
-				{
-				setState(63);
-				statement();
+				setState(65);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case T__8:
+					{
+					setState(63);
+					quote();
+					}
+					break;
+				case NUMBER:
+				case FLOAT:
+				case STRING:
+				case BOOLEAN:
+				case WORD:
+				case MATH_WORDS:
+					{
+					setState(64);
+					statement();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
 				}
 				}
-				setState(68);
+				setState(69);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(69);
+			setState(70);
 			match(T__9);
 			}
 		}
@@ -491,14 +516,14 @@ public class PactorParser extends Parser {
 		enterRule(_localctx, 8, RULE_statement);
 		int _la;
 		try {
-			setState(76);
+			setState(77);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUMBER:
 				_localctx = new PushNumberToStackContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(71);
+				setState(72);
 				((PushNumberToStackContext)_localctx).value = match(NUMBER);
 				}
 				break;
@@ -506,7 +531,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushFloatToStackContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(72);
+				setState(73);
 				((PushFloatToStackContext)_localctx).value = match(FLOAT);
 				}
 				break;
@@ -514,7 +539,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushStringToStackContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(73);
+				setState(74);
 				((PushStringToStackContext)_localctx).value = match(STRING);
 				}
 				break;
@@ -522,7 +547,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushBooleanToStackContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(74);
+				setState(75);
 				((PushBooleanToStackContext)_localctx).value = match(BOOLEAN);
 				}
 				break;
@@ -531,7 +556,7 @@ public class PactorParser extends Parser {
 				_localctx = new CommandRunContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(75);
+				setState(76);
 				((CommandRunContext)_localctx).value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==WORD || _la==MATH_WORDS) ) {
@@ -560,28 +585,28 @@ public class PactorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\23Q\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\23R\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\7\2\16\n\2\f\2\16\2\21\13\2\3\2\3\2\3\2"+
 		"\7\2\26\n\2\f\2\16\2\31\13\2\3\2\3\2\3\3\3\3\3\3\7\3 \n\3\f\3\16\3#\13"+
 		"\3\3\3\3\3\7\3\'\n\3\f\3\16\3*\13\3\3\3\3\3\3\3\6\3/\n\3\r\3\16\3\60\3"+
-		"\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4?\n\4\3\5\3\5\7\5C\n"+
-		"\5\f\5\16\5F\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\5\6O\n\6\3\6\2\2\7\2\4\6"+
-		"\b\n\2\3\3\2\21\22\2Y\2\17\3\2\2\2\4\34\3\2\2\2\6>\3\2\2\2\b@\3\2\2\2"+
-		"\nN\3\2\2\2\f\16\5\4\3\2\r\f\3\2\2\2\16\21\3\2\2\2\17\r\3\2\2\2\17\20"+
-		"\3\2\2\2\20\27\3\2\2\2\21\17\3\2\2\2\22\26\5\n\6\2\23\26\5\6\4\2\24\26"+
-		"\5\b\5\2\25\22\3\2\2\2\25\23\3\2\2\2\25\24\3\2\2\2\26\31\3\2\2\2\27\25"+
-		"\3\2\2\2\27\30\3\2\2\2\30\32\3\2\2\2\31\27\3\2\2\2\32\33\7\2\2\3\33\3"+
-		"\3\2\2\2\34\35\7\21\2\2\35!\7\3\2\2\36 \7\21\2\2\37\36\3\2\2\2 #\3\2\2"+
-		"\2!\37\3\2\2\2!\"\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$(\7\4\2\2%\'\7\21\2\2&"+
-		"%\3\2\2\2\'*\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*(\3\2\2\2+,\7\5\2\2"+
-		",.\7\6\2\2-/\5\n\6\2.-\3\2\2\2/\60\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61"+
-		"\62\3\2\2\2\62\63\7\7\2\2\63\5\3\2\2\2\64\65\5\b\5\2\65\66\5\b\5\2\66"+
-		"\67\7\b\2\2\67?\3\2\2\289\5\b\5\29:\7\t\2\2:?\3\2\2\2;<\5\b\5\2<=\7\n"+
-		"\2\2=?\3\2\2\2>\64\3\2\2\2>8\3\2\2\2>;\3\2\2\2?\7\3\2\2\2@D\7\13\2\2A"+
-		"C\5\n\6\2BA\3\2\2\2CF\3\2\2\2DB\3\2\2\2DE\3\2\2\2EG\3\2\2\2FD\3\2\2\2"+
-		"GH\7\f\2\2H\t\3\2\2\2IO\7\r\2\2JO\7\16\2\2KO\7\17\2\2LO\7\20\2\2MO\t\2"+
-		"\2\2NI\3\2\2\2NJ\3\2\2\2NK\3\2\2\2NL\3\2\2\2NM\3\2\2\2O\13\3\2\2\2\13"+
-		"\17\25\27!(\60>DN";
+		"\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4?\n\4\3\5\3\5\3\5\7"+
+		"\5D\n\5\f\5\16\5G\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\5\6P\n\6\3\6\2\2\7"+
+		"\2\4\6\b\n\2\3\3\2\21\22\2[\2\17\3\2\2\2\4\34\3\2\2\2\6>\3\2\2\2\b@\3"+
+		"\2\2\2\nO\3\2\2\2\f\16\5\4\3\2\r\f\3\2\2\2\16\21\3\2\2\2\17\r\3\2\2\2"+
+		"\17\20\3\2\2\2\20\27\3\2\2\2\21\17\3\2\2\2\22\26\5\n\6\2\23\26\5\6\4\2"+
+		"\24\26\5\b\5\2\25\22\3\2\2\2\25\23\3\2\2\2\25\24\3\2\2\2\26\31\3\2\2\2"+
+		"\27\25\3\2\2\2\27\30\3\2\2\2\30\32\3\2\2\2\31\27\3\2\2\2\32\33\7\2\2\3"+
+		"\33\3\3\2\2\2\34\35\7\21\2\2\35!\7\3\2\2\36 \7\21\2\2\37\36\3\2\2\2 #"+
+		"\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2\"$\3\2\2\2#!\3\2\2\2$(\7\4\2\2%\'\7\21"+
+		"\2\2&%\3\2\2\2\'*\3\2\2\2(&\3\2\2\2()\3\2\2\2)+\3\2\2\2*(\3\2\2\2+,\7"+
+		"\5\2\2,.\7\6\2\2-/\5\n\6\2.-\3\2\2\2/\60\3\2\2\2\60.\3\2\2\2\60\61\3\2"+
+		"\2\2\61\62\3\2\2\2\62\63\7\7\2\2\63\5\3\2\2\2\64\65\5\b\5\2\65\66\5\b"+
+		"\5\2\66\67\7\b\2\2\67?\3\2\2\289\5\b\5\29:\7\t\2\2:?\3\2\2\2;<\5\b\5\2"+
+		"<=\7\n\2\2=?\3\2\2\2>\64\3\2\2\2>8\3\2\2\2>;\3\2\2\2?\7\3\2\2\2@E\7\13"+
+		"\2\2AD\5\b\5\2BD\5\n\6\2CA\3\2\2\2CB\3\2\2\2DG\3\2\2\2EC\3\2\2\2EF\3\2"+
+		"\2\2FH\3\2\2\2GE\3\2\2\2HI\7\f\2\2I\t\3\2\2\2JP\7\r\2\2KP\7\16\2\2LP\7"+
+		"\17\2\2MP\7\20\2\2NP\t\2\2\2OJ\3\2\2\2OK\3\2\2\2OL\3\2\2\2OM\3\2\2\2O"+
+		"N\3\2\2\2P\13\3\2\2\2\f\17\25\27!(\60>CEO";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
