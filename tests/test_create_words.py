@@ -12,7 +12,7 @@ class TestPrimitiveWords:
 
   def test_create_word(self):
     script = """
-    square ( x -- y ): dup * ;
+    :square ( x -- y ) dup * ;
     """
 
     vm = self.__run_script(script)
@@ -20,7 +20,7 @@ class TestPrimitiveWords:
 
   def test_create_word_and_use_it(self):
     script = """
-    square ( x -- y ): dup * ;
+    :square ( x -- y ) dup * ;
     10 square
     """
 
@@ -30,8 +30,8 @@ class TestPrimitiveWords:
 
   def test_create_2_words_and_use_it(self):
     script = """
-    square ( x -- y ): dup * ;
-    doublesquare ( x -- y ): square square ;
+    :square ( x -- y ) dup * ;
+    :doublesquare ( x -- y ) square square ;
     10 doublesquare
     """
 
@@ -41,7 +41,7 @@ class TestPrimitiveWords:
 
   def test_create_2dup_and_use_it(self):
     script = """
-    multidup ( x y -- x y ): * dup ;
+    :multidup ( x y -- x y ) * dup ;
     10 20 multidup
     """
 
@@ -51,7 +51,7 @@ class TestPrimitiveWords:
 
   def test_create_word_with_quote_and_use_it(self):
     script = """
-    multidup ( x y -- x y ): * [dup] call ;
+    :multidup ( x y -- x y ) * [dup] call ;
     10 20 multidup
     """
 

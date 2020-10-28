@@ -1,2 +1,2 @@
-square(x--y):dup*;
+:square(x--y)dup*;
 10 square

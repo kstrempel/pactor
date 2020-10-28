@@ -14,6 +14,11 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#using.
+    def visitUsing(self, ctx:PactorParser.UsingContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PactorParser#createWord.
     def visitCreateWord(self, ctx:PactorParser.CreateWordContext):
         return self.visitChildren(ctx)

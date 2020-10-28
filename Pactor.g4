@@ -1,11 +1,16 @@
 grammar Pactor;
 
 program
-: create_words* (statement|commands|quote)* EOF
+: using* create_words* (statement|commands|quote)* EOF
+;
+
+using
+: 'USING:' PACKAGES+ ';'
 ;
 
 create_words
-: name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' (statement|commands|quote)* ';'  # createWord
+: ':' name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' (statement|commands|quote)* ';'   # createWord
+| '::' name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' (statement|commands|quote)* ';'  # createVariableWord
 ;
 
 commands
@@ -49,6 +54,10 @@ BOOLEAN
 
 WORD
 : [a-z0-9]+
+;
+
+fragment PACKAGES:
+| ( [a-z0-9] | '.' )+
 ;
 
 MATH_WORDS

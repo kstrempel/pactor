@@ -41,8 +41,8 @@ python setup.py test
 examples/recur.pactor
 
 ```
-print(x--): str "print(" swap + ")" + python;
-recur(x--y): 1 - dup 0 > [dup print recur] when;
+:print(x--) str "print(" swap + ")" + python;
+:recur(x--y) 1 - dup 0 > [dup print recur] when;
 10 recur
 ```
 

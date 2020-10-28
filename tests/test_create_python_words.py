@@ -12,7 +12,7 @@ class TestPrimitiveWords:
 
   def test_string_revers(self):
     script = """
-    reverse ( x -- y ): "'" swap + "'[::-1]" + python ;
+    :reverse ( x -- y ) "'" swap + "'[::-1]" + python ;
     "olleh" reverse
     """
 

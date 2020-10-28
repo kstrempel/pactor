@@ -1,3 +1,2 @@
-print(x--): str "print(" swap + ")" + python;
-
+:print(x--) str "print(" swap + ")" + python;
 10 dup 0 > [print] when
