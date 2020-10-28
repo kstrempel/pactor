@@ -27,3 +27,12 @@ class TestQuoteCommands:
     assert 100 == vm.stack.pop()
 
 
+  def test_quote_and_times(self):
+    script = """
+    1 10 [ 2 * ] times
+    """
+
+    vm = self.__run_script(script)
+    assert 1024 == vm.stack.pop()
+
+

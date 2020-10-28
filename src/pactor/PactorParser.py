@@ -353,7 +353,6 @@ class PactorParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PactorParser.CommandsContext
             super().__init__(parser)
-            self.path = None # QuoteContext
             self.copyFrom(ctx)
 
         def quote(self):
@@ -371,7 +370,6 @@ class PactorParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a PactorParser.CommandsContext
             super().__init__(parser)
-            self.block = None # QuoteContext
             self.copyFrom(ctx)
 
         def quote(self):
@@ -409,7 +407,7 @@ class PactorParser ( Parser ):
                 localctx = PactorParser.CreateWhenContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 54
-                localctx.path = self.quote()
+                self.quote()
                 self.state = 55
                 self.match(PactorParser.T__6)
                 pass
@@ -418,7 +416,7 @@ class PactorParser ( Parser ):
                 localctx = PactorParser.CreateTimesContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 57
-                localctx.block = self.quote()
+                self.quote()
                 self.state = 58
                 self.match(PactorParser.T__7)
                 pass

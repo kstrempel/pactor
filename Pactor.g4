@@ -10,8 +10,8 @@ create_words
 
 commands
 : truepath=quote falsepath=quote 'if' # createIf
-| path=quote 'when'                   # createWhen
-| block=quote 'times'                 # createTimes
+| quote 'when'                        # createWhen
+| quote 'times'                       # createTimes
 ;
 
 quote

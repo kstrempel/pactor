@@ -31,7 +31,7 @@ class ASTVisitor(ParseTreeVisitor):
         word = ctx.value.text
         if word == '+': self.__ast.add_node(AddNode())
         elif word == '-': self.__ast.add_node(MinusNode())
-        elif word == '*': self.__ast.add_node(TimesNode())
+        elif word == '*': self.__ast.add_node(MultiplyNode())
         elif word == '/': self.__ast.add_node(DivideNode())
         elif word == 'dup': self.__ast.add_node(DupNode())
         elif word == 'swap': self.__ast.add_node(SwapNode())
@@ -74,4 +74,6 @@ class ASTVisitor(ParseTreeVisitor):
         return result
 
     def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
-        return self.visitChildren(ctx)
+        result = self.visitChildren(ctx)
+        self.__ast.add_node(TimesNode())
+        return result

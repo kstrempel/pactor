@@ -59,7 +59,7 @@ class MinusNode():
     value2 = vm.stack.pop()
     vm.stack.append(value2 - value1)
 
-class TimesNode():
+class MultiplyNode():
   def run(self, vm: VM):
     value = vm.stack.pop() * vm.stack.pop()
     vm.stack.append(value)
@@ -100,6 +100,13 @@ class WhenNode():
     quote = vm.stack.pop()
     is_true = vm.stack.pop()
     if is_true:
+      vm.run_ast(quote.ast)
+
+class TimesNode():
+  def run(self, vm: VM):
+    quote = vm.stack.pop()
+    count = vm.stack.pop()
+    for _ in range(0, count):
       vm.run_ast(quote.ast)
 
 class QuoteNode():

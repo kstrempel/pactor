@@ -326,14 +326,12 @@ public class PactorParser extends Parser {
 		public CreateIfContext(CommandsContext ctx) { copyFrom(ctx); }
 	}
 	public static class CreateWhenContext extends CommandsContext {
-		public QuoteContext path;
 		public QuoteContext quote() {
 			return getRuleContext(QuoteContext.class,0);
 		}
 		public CreateWhenContext(CommandsContext ctx) { copyFrom(ctx); }
 	}
 	public static class CreateTimesContext extends CommandsContext {
-		public QuoteContext block;
 		public QuoteContext quote() {
 			return getRuleContext(QuoteContext.class,0);
 		}
@@ -364,7 +362,7 @@ public class PactorParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(54);
-				((CreateWhenContext)_localctx).path = quote();
+				quote();
 				setState(55);
 				match(T__6);
 				}
@@ -374,7 +372,7 @@ public class PactorParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(57);
-				((CreateTimesContext)_localctx).block = quote();
+				quote();
 				setState(58);
 				match(T__7);
 				}
