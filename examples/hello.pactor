@@ -1,0 +1,3 @@
+print ( str -- ):  "print('" swap + "')" + python ;
+
+"Hello World" print

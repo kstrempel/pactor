@@ -8,6 +8,10 @@ def load_script(script):
     stream = InputStream(script)
     return __build_ast(stream)
 
+def load_file(file):
+    stream = FileStream(file)
+    return __build_ast(stream)
+
 def __build_ast(inputstream : InputStream):
   lexer = PactorLexer(inputstream)
   stream = CommonTokenStream(lexer)

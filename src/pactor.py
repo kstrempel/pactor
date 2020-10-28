@@ -1,48 +1,18 @@
-# -*- coding: utf-8 -*-
-"""
-This is a skeleton file that can serve as a starting point for a Python
-console script. To run this script uncomment the following lines in the
-[options.entry_points] section in setup.cfg:
-
-    console_scripts =
-         fibonacci = pactor.skeleton:run
-
-Then run `python setup.py install` which will install the command `fibonacci`
-inside your current environment.
-Besides console scripts, the header (i.e. until _logger...) of this file can
-also be used as template for Python modules.
-
-Note: This skeleton file can be safely removed if not needed!
-"""
+#! /usr/bin/env python
 
 import argparse
 import sys
 import logging
 
-from pactor import __version__
+from pactor.compiler import load_file
+from pactor.vm import VM
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
 __license__ = "mit"
+__version__ = 0.2
 
 _logger = logging.getLogger(__name__)
-
-
-def fib(n):
-    """Fibonacci example function
-
-    Args:
-      n (int): integer
-
-    Returns:
-      int: n-th Fibonacci number
-    """
-    assert n > 0
-    a, b = 1, 1
-    for i in range(n-1):
-        a, b = b, a+b
-    return a
-
 
 def parse_args(args):
     """Parse command line parameters
@@ -54,16 +24,14 @@ def parse_args(args):
       :obj:`argparse.Namespace`: command line parameters namespace
     """
     parser = argparse.ArgumentParser(
-        description="Just a Fibonacci demonstration")
+        description="Pactor Language")
+    parser.add_argument(
+        'file', metavar='FILE', type=str,
+        help='starts the pactor source file')
     parser.add_argument(
         "--version",
         action="version",
         version="pactor {ver}".format(ver=__version__))
-    parser.add_argument(
-        dest="n",
-        help="n-th Fibonacci number",
-        type=int,
-        metavar="INT")
     parser.add_argument(
         "-v",
         "--verbose",
@@ -78,6 +46,14 @@ def parse_args(args):
         help="set loglevel to DEBUG",
         action="store_const",
         const=logging.DEBUG)
+    parser.add_argument(
+        "-s",
+        "--stack",
+        dest="stack",
+        help="prints the stack when script finised",
+        action="store_const",
+        const=logging.DEBUG)
+
     return parser.parse_args(args)
 
 
@@ -100,9 +76,13 @@ def main(args):
     """
     args = parse_args(args)
     setup_logging(args.loglevel)
-    _logger.debug("Starting crazy calculations...")
-    print("The {}-th Fibonacci number is {}".format(args.n, fib(args.n)))
-    _logger.info("Script ends here")
+    ast = load_file(args.file)
+    vm = VM(ast)
+    vm.run()
+
+    if(args.stack):
+        print(vm.stack)
+
 
 
 def run():
