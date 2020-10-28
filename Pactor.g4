@@ -5,7 +5,7 @@ program
 ;
 
 create_words
-: name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' body=statement+ ';'  # createWord
+: name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' ':' (statement|commands|quote)* ';'  # createWord
 ;
 
 commands

@@ -48,3 +48,13 @@ class TestPrimitiveWords:
     vm = self.__run_script(script)
     assert vm.stack.pop() == 200
     assert vm.stack.pop() == 200
+
+  def test_create_word_with_quote_and_use_it(self):
+    script = """
+    multidup ( x y -- x y ): * [dup] call ;
+    10 20 multidup
+    """
+
+    vm = self.__run_script(script)
+    assert vm.stack.pop() == 200
+    assert vm.stack.pop() == 200

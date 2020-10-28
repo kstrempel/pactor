@@ -36,3 +36,26 @@ Run the complete suite.
 python setup.py test
 ```
 
+# Small Example
+
+examples/recur.pactor
+
+```
+print(x--): str "print(" swap + ")" + python;
+recur(x--y): 1 - dup 0 > [dup print recur] when;
+10 recur
+```
+
+prints
+
+```
+9
+8
+7
+6
+5
+4
+3
+2
+1
+```

@@ -51,6 +51,7 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'dup': self.ast.add_node(DupNode())
         elif word == 'swap': self.ast.add_node(SwapNode())
         elif word == 'call': self.ast.add_node(CallNode())
+        elif word == 'str': self.ast.add_node(StrNode())
         elif word == 'python': self.ast.add_node(PythonNode())
         else:
           self.ast.add_node(CallWordNode(word))
@@ -80,7 +81,6 @@ class ASTVisitor(ParseTreeVisitor):
                                    len(ctx.params_out)))
         return result
 
-    # TODO: solve quote in quote
     def visitCreateQuote(self, ctx:PactorParser.CreateQuoteContext):
         self.ast_increase()
         result = self.visitChildren(ctx)

@@ -1,0 +1,2 @@
+square(x--y):dup*;
+10 square

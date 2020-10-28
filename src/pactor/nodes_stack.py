@@ -1,4 +1,5 @@
 from pactor.vm import VM
+from pactor.node_stack_helper import pop, push
 
 class DupNode():
   def run(self, vm: VM):
@@ -18,3 +19,7 @@ class PythonNode():
     python_code = vm.stack.pop()
     result = eval(python_code)
     vm.stack.append(result)
+
+class StrNode():
+  def run(self, vm: VM):
+    push(vm, str(pop(vm)))
