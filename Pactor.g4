@@ -5,7 +5,7 @@ program
 ;
 
 using
-: 'USING:' PACKAGES+ ';'
+: 'USING:' packages+=WORD* ';'    # createUsing
 ;
 
 create_words
@@ -53,11 +53,7 @@ BOOLEAN
 ;
 
 WORD
-: [a-z0-9]+
-;
-
-fragment PACKAGES:
-| ( [a-z0-9] | '.' )+
+: [a-z0-9_]+
 ;
 
 MATH_WORDS

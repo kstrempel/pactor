@@ -14,6 +14,9 @@ class Ast:
   def add_node(self, node: Node):
     self.__nodes.append(node)
 
+  def add_node_beginning(self, node: Node):
+    self.__nodes = [node] + self.__nodes
+
   @property
   def nodes(self):
     return self.__nodes

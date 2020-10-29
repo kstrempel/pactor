@@ -6,6 +6,7 @@ from pactor.nodes_blocks import *
 from pactor.nodes_primitives import *
 from pactor.nodes_commands import *
 from pactor.nodes_stack import *
+from pactor.nodes_using import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -101,4 +102,10 @@ class ASTVisitor(ParseTreeVisitor):
     def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
         result = self.visitChildren(ctx)
         self.ast.add_node(TimesNode())
+        return result
+
+    def visitCreateUsing(self, ctx:PactorParser.CreateUsingContext):
+        result = self.visitChildren(ctx)
+        for package in ctx.packages:
+            self.ast.add_node(UsingNode(package.text))
         return result

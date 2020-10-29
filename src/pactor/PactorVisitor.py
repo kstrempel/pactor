@@ -14,13 +14,18 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#using.
-    def visitUsing(self, ctx:PactorParser.UsingContext):
+    # Visit a parse tree produced by PactorParser#createUsing.
+    def visitCreateUsing(self, ctx:PactorParser.CreateUsingContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by PactorParser#createWord.
     def visitCreateWord(self, ctx:PactorParser.CreateWordContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#createVariableWord.
+    def visitCreateVariableWord(self, ctx:PactorParser.CreateVariableWordContext):
         return self.visitChildren(ctx)
 
 
