@@ -7,7 +7,7 @@ import logging
 from pactor.compiler import load_file, load_script
 from pactor.vm import VM
 from pactor.ast import Ast
-
+from pactor.repl import repl
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
@@ -90,20 +90,7 @@ def main(args):
         if(args.stack):
             print(vm.stack)
     else:
-        print("Pactor Interpreter")
-        vm = VM(Ast())
-        while True:
-            try:
-                print(">", end="")
-                line = input()
-                ast = load_script(line)
-                vm.run_ast(ast)
-                print("--- Data stack:")
-                for node in vm.stack:
-                    print(node)
-            except Exception as e:
-                print(f"Error: {e}")
-
+        repl()
 
 def run():
     """Entry point for console_scripts
