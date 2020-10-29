@@ -25,6 +25,10 @@ class WordNode():
       self.__to_stack = to_stack
 
     @property
+    def name(self):
+      return self.__name
+
+    @property
     def from_stack(self):
       return self.__from_stack
 
