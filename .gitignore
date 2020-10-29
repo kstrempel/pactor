@@ -49,3 +49,6 @@ MANIFEST
 # Per-project virtualenvs
 .venv*/
 venv/
+
+# pactor generated files
+.pactor_history

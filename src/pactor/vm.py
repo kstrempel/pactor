@@ -4,6 +4,7 @@ class VM:
     self.__ast = ast
     self.__stack = []
     self.__words = {}
+    self.__locals = {}
     self.__symbols = {}
 
 
@@ -11,6 +12,7 @@ class VM:
     vm = VM(self.__ast)
     vm.__words = self.__words
     vm.__symbols = self.__symbols
+    vm.__locals = {}
 
     # pop parameter to inner stack
     for _ in range(0,stack_size):
@@ -27,17 +29,23 @@ class VM:
     for node in ast.nodes:
       node.run(self)
 
-  def run_word(self, word: str):
-    word_node = self.__words[word]
-    inner_vm = self.create_inner_vm(word_node.from_stack)
-    for node in word_node.ast.nodes:
-      node.run(inner_vm)
-    # pop return values
-    for _ in range(0, word_node.to_stack):
-      self.stack.append(inner_vm.stack.pop())
+  def run_word_or_variable(self, word_var: str):
+    if word_var in self.__words:
+      word_node = self.__words[word_var]
+      inner_vm = self.create_inner_vm(word_node.from_stack)
+      for node in word_node.ast.nodes:
+        node.run(inner_vm)
+      # pop return values
+      for _ in range(0, word_node.to_stack):
+        self.stack.append(inner_vm.stack.pop())
+    if word_var in self.__locals:
+      self.stack.append(self.__locals[word_var])
 
   def register_word(self, word: str, ast):
     self.__words[word] = ast
+
+  def add_local(self, name):
+    self.__locals[name] = self.stack.pop()
 
   @property
   def stack(self):

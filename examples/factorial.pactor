@@ -1,0 +1,8 @@
+USING: io;
+
+::factorial (n--fact) n 2 < [ 1 ][n 1 - factorial n *] if;
+
+1 factorial print
+5 factorial print
+7 factorial print
+10 factorial print

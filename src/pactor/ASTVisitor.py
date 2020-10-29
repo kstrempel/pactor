@@ -55,7 +55,7 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'str': self.ast.add_node(StrNode())
         elif word == 'python': self.ast.add_node(PythonNode())
         else:
-          self.ast.add_node(CallWordNode(word))
+          self.ast.add_node(CallWordOrVariableNode(word))
 
         return self.visitChildren(ctx)
 
@@ -109,3 +109,21 @@ class ASTVisitor(ParseTreeVisitor):
         for package in ctx.packages:
             self.ast.add_node(UsingNode(package.text))
         return result
+
+    def visitCreateVariableWord(self, ctx:PactorParser.CreateVariableWordContext):
+        self.ast_increase()
+        self.ast.add_node(Stack2LocalVarsNode([var.text for var in ctx.params_in]))
+        result = self.visitChildren(ctx)
+        words_ast = self.ast_decrease()
+        self.ast.add_node(WordNode(ctx.name.text,
+                                   words_ast,
+                                   len(ctx.params_in),
+                                   len(ctx.params_out)))
+        return result
+
+    def visitCreateLocalVars(self, ctx:PactorParser.CreateLocalVarsContext):
+        if ctx.variable:
+            self.ast.add_node(Stack2LocalVarsNode([ctx.variable.text]))
+        elif ctx.variables:
+            self.ast.add_node(Stack2LocalVarsNode([var.text for var in ctx.variables]))
+        return self.visitChildren(ctx)

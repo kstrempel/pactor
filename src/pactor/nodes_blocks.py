@@ -1,6 +1,6 @@
 from pactor.vm import VM
 
-class QuoteNode():
+class QuoteNode:
   def __init__(self, ast):
     self.__ast = ast
 
@@ -11,13 +11,13 @@ class QuoteNode():
   def run(self, vm: VM):
       vm.stack.append(self)
 
-class CallWordNode():
+class CallWordOrVariableNode:
     def __init__(self, word):
       self.__word = word
     def run(self, vm : VM):
-      vm.run_word(self.__word)
+      vm.run_word_or_variable(self.__word)
 
-class WordNode():
+class WordNode:
     def __init__(self, name, ast, from_stack, to_stack):
       self.__name = name
       self.__ast = ast
@@ -43,7 +43,14 @@ class WordNode():
     def run(self, vm: VM):
       vm.register_word(self.__name, self)
 
-class CallNode():
+class CallNode:
   def run(self, vm: VM):
     quote = vm.stack.pop()
     vm.run_ast(quote.ast)
+
+class Stack2LocalVarsNode:
+  def __init__(self, local_vars):
+    self.__local_vars = local_vars
+  def run(self, vm: VM):
+    for name in self.__local_vars[::-1]:
+      vm.add_local(name)

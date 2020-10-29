@@ -29,6 +29,11 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#block.
+    def visitBlock(self, ctx:PactorParser.BlockContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PactorParser#createIf.
     def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
         return self.visitChildren(ctx)
@@ -46,6 +51,11 @@ class PactorVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PactorParser#createQuote.
     def visitCreateQuote(self, ctx:PactorParser.CreateQuoteContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#createLocalVars.
+    def visitCreateLocalVars(self, ctx:PactorParser.CreateLocalVarsContext):
         return self.visitChildren(ctx)
 
 
