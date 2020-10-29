@@ -1,1 +1,1 @@
-:print(str--) "print('" swap + "')" + python ;
+:print(x--) str "print(" swap + ")" + python;
