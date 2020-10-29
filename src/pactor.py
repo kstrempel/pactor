@@ -4,8 +4,10 @@ import argparse
 import sys
 import logging
 
-from pactor.compiler import load_file
+from pactor.compiler import load_file, load_script
 from pactor.vm import VM
+from pactor.ast import Ast
+
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
@@ -26,7 +28,11 @@ def parse_args(args):
     parser = argparse.ArgumentParser(
         description="Pactor Language")
     parser.add_argument(
-        'file', metavar='FILE', type=str,
+        'file',
+        metavar='FILE',
+        nargs='?',
+        type=str,
+        default=None,
         help='starts the pactor source file')
     parser.add_argument(
         "--version",
@@ -76,13 +82,27 @@ def main(args):
     """
     args = parse_args(args)
     setup_logging(args.loglevel)
-    ast = load_file(args.file)
-    vm = VM(ast)
-    vm.run()
+    if args.file:
+        ast = load_file(args.file)
+        vm = VM(ast)
+        vm.run()
 
-    if(args.stack):
-        print(vm.stack)
-
+        if(args.stack):
+            print(vm.stack)
+    else:
+        print("Pactor Interpreter")
+        vm = VM(Ast())
+        while True:
+            try:
+                print(">", end="")
+                line = input()
+                ast = load_script(line)
+                vm.run_ast(ast)
+                print("--- Data stack:")
+                for node in vm.stack:
+                    print(node)
+            except Exception as e:
+                print(f"Error: {e}")
 
 
 def run():

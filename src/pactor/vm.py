@@ -21,6 +21,7 @@ class VM:
   def run(self):
     for node in self.__ast.nodes:
       node.run(self)
+    return self
 
   def run_ast(self, ast):
     for node in ast.nodes:
