@@ -1,2 +1,3 @@
-:print(x--) str "print(" swap + ")" + python;
-10 dup 0 > [print] when
+USING: random io;
+
+1 2 random_int 2 = ["It is a two" print] when
