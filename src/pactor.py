@@ -8,7 +8,7 @@ from pactor.compiler import load_file, load_script
 from pactor.vm import VM
 from pactor.ast import Ast
 from pactor.repl import repl
-from pactor.runtime_exceptions import PactorRuntimeError
+from pactor.runtime_exceptions import InnerPactorRuntimeError
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
@@ -88,7 +88,7 @@ def main(args):
         vm = VM(ast)
         try:
             vm.run()
-        except PactorRuntimeError as e:
+        except InnerPactorRuntimeError as e:
             print(f"Runtime error in {args.file} at [{e.line}:{e.column}]")
             with open(args.file) as f:
                 line = f.readline()

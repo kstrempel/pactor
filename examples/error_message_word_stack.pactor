@@ -1,0 +1,5 @@
+USING: str;
+
+::bla(a b--) a +;
+
+10 bla

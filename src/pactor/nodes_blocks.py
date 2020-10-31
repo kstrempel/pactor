@@ -18,7 +18,7 @@ class CallWordOrVariableNode(AstNode):
       self.__word = word
       super().__init__(ctx)
     def run(self, vm : VM):
-      vm.run_word_or_variable(self.__word)
+      vm.run_word_or_variable(self.__word, self)
 
 class WordNode(AstNode):
     def __init__(self, name, ast, from_stack, to_stack, ctx):

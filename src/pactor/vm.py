@@ -1,5 +1,4 @@
-from pactor.runtime_exceptions import PactorRuntimeError
-
+from pactor.runtime_exceptions import PactorRuntimeError, PactorUnknownWordOrVariable, InnerPactorRuntimeError
 
 class VM:
 
@@ -26,7 +25,7 @@ class VM:
     for node in self.__ast.nodes:
       try:
         node.run(self)
-      except PactorRuntimeError as e:
+      except InnerPactorRuntimeError as e:
         raise e
       except Exception as e:
         raise PactorRuntimeError(e, node)
@@ -36,27 +35,29 @@ class VM:
     for node in ast.nodes:
       try:
         node.run(self)
-      except PactorRuntimeError as e:
+      except InnerPactorRuntimeError as e:
         raise e
       except Exception as e:
         raise PactorRuntimeError(e, node)
 
-  def run_word_or_variable(self, word_var: str):
+  def run_word_or_variable(self, word_var: str, ctx):
     if word_var in self.__words:
       word_node = self.__words[word_var]
       inner_vm = self.create_inner_vm(word_node.from_stack)
       for node in word_node.ast.nodes:
         try:
           node.run(inner_vm)
-        except PactorRuntimeError as e:
+        except InnerPactorRuntimeError as e:
           raise e
         except Exception as e:
           raise PactorRuntimeError(e, node)
       # pop return values
       for _ in range(0, word_node.to_stack):
         self.stack.append(inner_vm.stack.pop())
-    if word_var in self.__locals:
+    elif word_var in self.__locals:
       self.stack.append(self.__locals[word_var])
+    else:
+      raise PactorUnknownWordOrVariable(word_var, ctx)
 
   def register_word(self, word: str, ast):
     self.__words[word] = ast
