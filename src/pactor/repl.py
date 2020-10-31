@@ -21,6 +21,7 @@ def _(event):
   exit(0)
 
 pactor_completer = WordCompleter(['dup', 'str', 'swap', 'call', 'python',
+                                  'py_call', 'py_module', 'py_getattr',
                                   '!=', ">=", '<=', 'and', 'or'])
 
 def print_stack(vm: VM):

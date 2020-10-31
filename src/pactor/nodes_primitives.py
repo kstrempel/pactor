@@ -16,6 +16,6 @@ class FloatNode(AstNode):
 
 class StringNode(AstNode):
   def __init__(self, value, ctx):
-    self.__value = value
+    self.__value = value.encode('utf-8').decode('unicode_escape')
   def run(self, vm: VM):
       vm.stack.append(self.__value)

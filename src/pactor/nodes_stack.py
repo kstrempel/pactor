@@ -15,12 +15,6 @@ class SwapNode(AstNode):
     vm.stack.append(value1)
     vm.stack.append(value2)
 
-class PythonNode(AstNode):
-  def run(self, vm: VM):
-    python_code = vm.stack.pop()
-    result = eval(python_code)
-    vm.stack.append(result)
-
 class StrNode(AstNode):
   def run(self, vm: VM):
     push(vm, str(pop(vm)))

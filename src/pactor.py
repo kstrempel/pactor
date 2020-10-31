@@ -3,6 +3,8 @@
 import argparse
 import sys
 import logging
+import importlib # needed for runtime
+
 
 from pactor.compiler import load_file, load_script
 from pactor.vm import VM

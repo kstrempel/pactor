@@ -6,5 +6,5 @@ USING: io;
 
 ::loop(x -- ) x 0 > [x str "-" + x fibonacci str + print x 1 - loop] when;
 
-"Not the fastes solution, be patient" print
-30 loop
+"Not the fastes runtime, be patient" print
+25 loop

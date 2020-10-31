@@ -1,1 +1,5 @@
+USING: kernel;
+
 :square ( x -- y) dup *;
+
+:random ( min max -- r) 2 "random" py_module "randint" py_getattr py_call;
