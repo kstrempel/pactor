@@ -9,8 +9,12 @@ using
 ;
 
 create_words
-: ':' name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' (statement|commands|quote)* ';'   # createWord
-| '::' name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' (statement|commands|quote)* ';'  # createVariableWord
+: ':' name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' block ';'   # createWord
+| '::' name=WORD '(' params_in+=WORD* '--' params_out+=WORD* ')' block ';'  # createVariableWord
+;
+
+block
+: (statement|commands|quote|block_commands)*
 ;
 
 commands
@@ -20,7 +24,12 @@ commands
 ;
 
 quote
-: '[' (quote|statement)* ']' # createQuote
+: '[' block ']' # createQuote
+;
+
+block_commands
+: '->' variable=WORD                  # createLocalVars
+| '->' '(' variables+=WORD+ ')'       # createLocalVars
 ;
 
 statement
@@ -53,7 +62,7 @@ BOOLEAN
 ;
 
 WORD
-: [a-z0-9_]+
+: [a-z0-9_]+ '?'*
 ;
 
 MATH_WORDS

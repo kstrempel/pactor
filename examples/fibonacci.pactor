@@ -1,0 +1,10 @@
+USING: io;
+
+::fibonacci(n--r) n 1 = [ 0 ] [
+    n 2 = [1][n 1 - fibonacci n 2 - fibonacci +]if
+  ] if;
+
+::loop(x -- ) x 0 > [x str "-" + x fibonacci str + print x 1 - loop] when;
+
+"Not the fastes runtime, be patient" print
+25 loop

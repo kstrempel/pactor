@@ -19,3 +19,28 @@ class TestPrimitiveWords:
     vm = self.__run_script(script)
     assert "hello" == vm.stack.pop()
 
+  def test_python_module(self):
+    script = """
+     "random" py_module
+    """
+
+    vm = self.__run_script(script)
+    assert getattr(vm.stack.pop(),"randint") != None
+
+  def test_python_module_getattr(self):
+    script = """
+     "random" py_module "randint" py_getattr
+    """
+
+    vm = self.__run_script(script)
+    assert vm.stack.pop().__hash__() != None
+
+
+  def test_python_function_moduls(self):
+    script = """
+    :random ( min max -- r) 2 "random" py_module "randint" py_getattr py_call;
+    10 10 random
+    """
+
+    vm = self.__run_script(script)
+    assert vm.stack.pop() == 10

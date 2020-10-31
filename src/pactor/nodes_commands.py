@@ -1,13 +1,14 @@
 from pactor.vm import VM
+from pactor.node_parent import AstNode
 
-class WhenNode():
+class WhenNode(AstNode):
   def run(self, vm: VM):
     quote = vm.stack.pop()
     is_true = vm.stack.pop()
     if is_true:
       vm.run_ast(quote.ast)
 
-class IfNode():
+class IfNode(AstNode):
   def run(self, vm: VM):
     quote_false = vm.stack.pop()
     quote_true = vm.stack.pop()
@@ -17,7 +18,7 @@ class IfNode():
     else:
       vm.run_ast(quote_false.ast)
 
-class TimesNode():
+class TimesNode(AstNode):
   def run(self, vm: VM):
     quote = vm.stack.pop()
     count = vm.stack.pop()

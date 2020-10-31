@@ -58,3 +58,12 @@ class TestPrimitiveWords:
     vm = self.__run_script(script)
     assert vm.stack.pop() == 200
     assert vm.stack.pop() == 200
+
+  def test_create_word_with_local_vars(self):
+    script = """
+    ::concat_with_space ( a b -- c ) a " " + b + ;
+    "Hello" "World" concat_with_space
+    """
+
+    vm = self.__run_script(script)
+    assert vm.stack.pop() == "Hello World"

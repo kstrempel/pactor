@@ -3,11 +3,14 @@
 import argparse
 import sys
 import logging
+import importlib # needed for runtime
+
 
 from pactor.compiler import load_file, load_script
 from pactor.vm import VM
 from pactor.ast import Ast
 from pactor.repl import repl
+from pactor.runtime_exceptions import InnerPactorRuntimeError
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
@@ -85,7 +88,19 @@ def main(args):
     if args.file:
         ast = load_file(args.file)
         vm = VM(ast)
-        vm.run()
+        try:
+            vm.run()
+        except InnerPactorRuntimeError as e:
+            print(f"Runtime error in {args.file} at [{e.line}:{e.column}]")
+            with open(args.file) as f:
+                line = f.readline()
+                for _ in range(1, e.line):
+                    line = f.readline()
+            print("> " + line[:-1])
+            print("> " + e.error_arrow)
+            print("> " + e.message)
+        except Exception as e:
+            print(f"Error: {e}")
 
         if(args.stack):
             print(vm.stack)
