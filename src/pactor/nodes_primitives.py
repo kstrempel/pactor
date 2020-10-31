@@ -1,19 +1,21 @@
 from pactor.vm import VM
+from pactor.node_parent import AstNode
 
-class NumberNode():
-  def __init__(self, value):
+class NumberNode(AstNode):
+  def __init__(self, value, ctx):
+    super().__init__(ctx)
     self.__value = int(value)
   def run(self, vm: VM):
       vm.stack.append(self.__value)
 
-class FloatNode():
-  def __init__(self, value):
+class FloatNode(AstNode):
+  def __init__(self, value, ctx):
     self.__value = float(value)
   def run(self, vm: VM):
       vm.stack.append(self.__value)
 
-class StringNode():
-  def __init__(self, value):
+class StringNode(AstNode):
+  def __init__(self, value, ctx):
     self.__value = value
   def run(self, vm: VM):
       vm.stack.append(self.__value)

@@ -1,8 +1,9 @@
 from pactor.vm import VM
 from pactor.node_parent import AstNode
 
-class QuoteNode:
-  def __init__(self, ast):
+class QuoteNode(AstNode):
+  def __init__(self, ast, ctx):
+    super().__init__(ctx)
     self.__ast = ast
 
   @property
@@ -19,8 +20,9 @@ class CallWordOrVariableNode(AstNode):
     def run(self, vm : VM):
       vm.run_word_or_variable(self.__word)
 
-class WordNode:
-    def __init__(self, name, ast, from_stack, to_stack):
+class WordNode(AstNode):
+    def __init__(self, name, ast, from_stack, to_stack, ctx):
+      super().__init__(ctx)
       self.__name = name
       self.__ast = ast
       self.__from_stack = from_stack
@@ -45,13 +47,14 @@ class WordNode:
     def run(self, vm: VM):
       vm.register_word(self.__name, self)
 
-class CallNode:
+class CallNode(AstNode):
   def run(self, vm: VM):
     quote = vm.stack.pop()
     vm.run_ast(quote.ast)
 
-class Stack2LocalVarsNode:
-  def __init__(self, local_vars):
+class Stack2LocalVarsNode(AstNode):
+  def __init__(self, local_vars, ctx):
+    super().__init__(ctx)
     self.__local_vars = local_vars
   def run(self, vm: VM):
     for name in self.__local_vars[::-1]:
