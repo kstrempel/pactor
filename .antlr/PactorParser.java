@@ -17,15 +17,17 @@ public class PactorParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, EXPRESSIONS=14, NUMBER=15, FLOAT=16, 
-		STRING=17, BOOLEAN=18, WORD=19, MATH_WORDS=20, WS=21;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
+		T__17=18, T__18=19, T__19=20, T__20=21, EXPRESSIONS=22, NUMBER=23, FLOAT=24, 
+		STRING=25, BOOLEAN=26, WORD=27, MATH_WORDS=28, WS=29;
 	public static final int
 		RULE_program = 0, RULE_using = 1, RULE_create_words = 2, RULE_block = 3, 
-		RULE_commands = 4, RULE_quote = 5, RULE_block_commands = 6, RULE_statement = 7;
+		RULE_commands = 4, RULE_array = 5, RULE_dictionary = 6, RULE_quote = 7, 
+		RULE_block_commands = 8, RULE_statement = 9;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"program", "using", "create_words", "block", "commands", "quote", "block_commands", 
-			"statement"
+			"program", "using", "create_words", "block", "commands", "array", "dictionary", 
+			"quote", "block_commands", "statement"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -33,15 +35,16 @@ public class PactorParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'USING:'", "';'", "':'", "'('", "'--'", "')'", "'::'", "'if'", 
-			"'when'", "'times'", "'['", "']'", "'->'"
+			"'when'", "'times'", "'each'", "'filter'", "'reduce'", "'keys'", "'set'", 
+			"'get'", "'{'", "'}'", "'['", "']'", "'->'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, "EXPRESSIONS", "NUMBER", "FLOAT", "STRING", "BOOLEAN", "WORD", 
-			"MATH_WORDS", "WS"
+			null, null, null, null, null, null, null, null, null, null, "EXPRESSIONS", 
+			"NUMBER", "FLOAT", "STRING", "BOOLEAN", "WORD", "MATH_WORDS", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -140,67 +143,67 @@ public class PactorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(19);
+			setState(23);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__0) {
 				{
 				{
-				setState(16);
+				setState(20);
 				using();
 				}
 				}
-				setState(21);
+				setState(25);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(25);
+			setState(29);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__2 || _la==T__6) {
 				{
 				{
-				setState(22);
+				setState(26);
 				create_words();
 				}
 				}
-				setState(27);
+				setState(31);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(33);
+			setState(37);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << EXPRESSIONS) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__16) | (1L << T__18) | (1L << EXPRESSIONS) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
 				{
-				setState(31);
+				setState(35);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 				case 1:
 					{
-					setState(28);
+					setState(32);
 					statement();
 					}
 					break;
 				case 2:
 					{
-					setState(29);
+					setState(33);
 					commands();
 					}
 					break;
 				case 3:
 					{
-					setState(30);
+					setState(34);
 					quote();
 					}
 					break;
 				}
 				}
-				setState(35);
+				setState(39);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(36);
+			setState(40);
 			match(EOF);
 			}
 		}
@@ -244,24 +247,24 @@ public class PactorParser extends Parser {
 			_localctx = new CreateUsingContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38);
-			match(T__0);
 			setState(42);
+			match(T__0);
+			setState(46);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==WORD) {
 				{
 				{
-				setState(39);
+				setState(43);
 				((CreateUsingContext)_localctx).WORD = match(WORD);
 				((CreateUsingContext)_localctx).packages.add(((CreateUsingContext)_localctx).WORD);
 				}
 				}
-				setState(44);
+				setState(48);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(45);
+			setState(49);
 			match(T__1);
 			}
 		}
@@ -321,56 +324,56 @@ public class PactorParser extends Parser {
 		enterRule(_localctx, 4, RULE_create_words);
 		int _la;
 		try {
-			setState(87);
+			setState(91);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__2:
 				_localctx = new CreateWordContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(47);
+				setState(51);
 				match(T__2);
-				setState(48);
+				setState(52);
 				((CreateWordContext)_localctx).name = match(WORD);
-				setState(49);
-				match(T__3);
 				setState(53);
+				match(T__3);
+				setState(57);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==WORD) {
 					{
 					{
-					setState(50);
+					setState(54);
 					((CreateWordContext)_localctx).WORD = match(WORD);
 					((CreateWordContext)_localctx).params_in.add(((CreateWordContext)_localctx).WORD);
 					}
 					}
-					setState(55);
+					setState(59);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(56);
-				match(T__4);
 				setState(60);
+				match(T__4);
+				setState(64);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==WORD) {
 					{
 					{
-					setState(57);
+					setState(61);
 					((CreateWordContext)_localctx).WORD = match(WORD);
 					((CreateWordContext)_localctx).params_out.add(((CreateWordContext)_localctx).WORD);
 					}
 					}
-					setState(62);
+					setState(66);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(63);
+				setState(67);
 				match(T__5);
-				setState(64);
+				setState(68);
 				block();
-				setState(65);
+				setState(69);
 				match(T__1);
 				}
 				break;
@@ -378,49 +381,49 @@ public class PactorParser extends Parser {
 				_localctx = new CreateVariableWordContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(67);
+				setState(71);
 				match(T__6);
-				setState(68);
+				setState(72);
 				((CreateVariableWordContext)_localctx).name = match(WORD);
-				setState(69);
-				match(T__3);
 				setState(73);
+				match(T__3);
+				setState(77);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==WORD) {
 					{
 					{
-					setState(70);
+					setState(74);
 					((CreateVariableWordContext)_localctx).WORD = match(WORD);
 					((CreateVariableWordContext)_localctx).params_in.add(((CreateVariableWordContext)_localctx).WORD);
 					}
 					}
-					setState(75);
+					setState(79);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(76);
-				match(T__4);
 				setState(80);
+				match(T__4);
+				setState(84);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==WORD) {
 					{
 					{
-					setState(77);
+					setState(81);
 					((CreateVariableWordContext)_localctx).WORD = match(WORD);
 					((CreateVariableWordContext)_localctx).params_out.add(((CreateVariableWordContext)_localctx).WORD);
 					}
 					}
-					setState(82);
+					setState(86);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(83);
+				setState(87);
 				match(T__5);
-				setState(84);
+				setState(88);
 				block();
-				setState(85);
+				setState(89);
 				match(T__1);
 				}
 				break;
@@ -477,41 +480,41 @@ public class PactorParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(95);
+			setState(99);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__12) | (1L << EXPRESSIONS) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__3) | (1L << T__16) | (1L << T__18) | (1L << T__20) | (1L << EXPRESSIONS) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
 				{
-				setState(93);
+				setState(97);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 				case 1:
 					{
-					setState(89);
+					setState(93);
 					statement();
 					}
 					break;
 				case 2:
 					{
-					setState(90);
+					setState(94);
 					commands();
 					}
 					break;
 				case 3:
 					{
-					setState(91);
+					setState(95);
 					quote();
 					}
 					break;
 				case 4:
 					{
-					setState(92);
+					setState(96);
 					block_commands();
 					}
 					break;
 				}
 				}
-				setState(97);
+				setState(101);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -539,6 +542,13 @@ public class PactorParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
+	public static class CreateGetKeysContext extends CommandsContext {
+		public DictionaryContext dictionary() {
+			return getRuleContext(DictionaryContext.class,0);
+		}
+		public TerminalNode STRING() { return getToken(PactorParser.STRING, 0); }
+		public CreateGetKeysContext(CommandsContext ctx) { copyFrom(ctx); }
+	}
 	public static class CreateIfContext extends CommandsContext {
 		public List<QuoteContext> quote() {
 			return getRuleContexts(QuoteContext.class);
@@ -547,6 +557,43 @@ public class PactorParser extends Parser {
 			return getRuleContext(QuoteContext.class,i);
 		}
 		public CreateIfContext(CommandsContext ctx) { copyFrom(ctx); }
+	}
+	public static class CreateEachContext extends CommandsContext {
+		public ArrayContext array() {
+			return getRuleContext(ArrayContext.class,0);
+		}
+		public QuoteContext quote() {
+			return getRuleContext(QuoteContext.class,0);
+		}
+		public CreateEachContext(CommandsContext ctx) { copyFrom(ctx); }
+	}
+	public static class CreateFilterContext extends CommandsContext {
+		public ArrayContext array() {
+			return getRuleContext(ArrayContext.class,0);
+		}
+		public QuoteContext quote() {
+			return getRuleContext(QuoteContext.class,0);
+		}
+		public CreateFilterContext(CommandsContext ctx) { copyFrom(ctx); }
+	}
+	public static class CreateReduceContext extends CommandsContext {
+		public ArrayContext array() {
+			return getRuleContext(ArrayContext.class,0);
+		}
+		public QuoteContext quote() {
+			return getRuleContext(QuoteContext.class,0);
+		}
+		public CreateReduceContext(CommandsContext ctx) { copyFrom(ctx); }
+	}
+	public static class CreateSetKeysContext extends CommandsContext {
+		public StatementContext statement() {
+			return getRuleContext(StatementContext.class,0);
+		}
+		public TerminalNode STRING() { return getToken(PactorParser.STRING, 0); }
+		public DictionaryContext dictionary() {
+			return getRuleContext(DictionaryContext.class,0);
+		}
+		public CreateSetKeysContext(CommandsContext ctx) { copyFrom(ctx); }
 	}
 	public static class CreateWhenContext extends CommandsContext {
 		public QuoteContext quote() {
@@ -565,18 +612,18 @@ public class PactorParser extends Parser {
 		CommandsContext _localctx = new CommandsContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_commands);
 		try {
-			setState(108);
+			setState(136);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				_localctx = new CreateIfContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(98);
+				setState(102);
 				quote();
-				setState(99);
+				setState(103);
 				quote();
-				setState(100);
+				setState(104);
 				match(T__7);
 				}
 				break;
@@ -584,9 +631,9 @@ public class PactorParser extends Parser {
 				_localctx = new CreateWhenContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(102);
+				setState(106);
 				quote();
-				setState(103);
+				setState(107);
 				match(T__8);
 				}
 				break;
@@ -594,12 +641,192 @@ public class PactorParser extends Parser {
 				_localctx = new CreateTimesContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(105);
+				setState(109);
 				quote();
-				setState(106);
+				setState(110);
 				match(T__9);
 				}
 				break;
+			case 4:
+				_localctx = new CreateEachContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(112);
+				array();
+				setState(113);
+				quote();
+				setState(114);
+				match(T__10);
+				}
+				break;
+			case 5:
+				_localctx = new CreateFilterContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(116);
+				array();
+				setState(117);
+				quote();
+				setState(118);
+				match(T__11);
+				}
+				break;
+			case 6:
+				_localctx = new CreateReduceContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(120);
+				array();
+				setState(121);
+				quote();
+				setState(122);
+				match(T__12);
+				}
+				break;
+			case 7:
+				_localctx = new CreateGetKeysContext(_localctx);
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(124);
+				dictionary();
+				setState(125);
+				match(T__13);
+				}
+				break;
+			case 8:
+				_localctx = new CreateSetKeysContext(_localctx);
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(127);
+				statement();
+				setState(128);
+				match(STRING);
+				setState(129);
+				dictionary();
+				setState(130);
+				match(T__14);
+				}
+				break;
+			case 9:
+				_localctx = new CreateGetKeysContext(_localctx);
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(132);
+				match(STRING);
+				setState(133);
+				dictionary();
+				setState(134);
+				match(T__15);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ArrayContext extends ParserRuleContext {
+		public List<StatementContext> statement() {
+			return getRuleContexts(StatementContext.class);
+		}
+		public StatementContext statement(int i) {
+			return getRuleContext(StatementContext.class,i);
+		}
+		public ArrayContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_array; }
+	}
+
+	public final ArrayContext array() throws RecognitionException {
+		ArrayContext _localctx = new ArrayContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_array);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(138);
+			match(T__3);
+			setState(142);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << EXPRESSIONS) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
+				{
+				{
+				setState(139);
+				statement();
+				}
+				}
+				setState(144);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(145);
+			match(T__5);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class DictionaryContext extends ParserRuleContext {
+		public List<TerminalNode> STRING() { return getTokens(PactorParser.STRING); }
+		public TerminalNode STRING(int i) {
+			return getToken(PactorParser.STRING, i);
+		}
+		public List<StatementContext> statement() {
+			return getRuleContexts(StatementContext.class);
+		}
+		public StatementContext statement(int i) {
+			return getRuleContext(StatementContext.class,i);
+		}
+		public DictionaryContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_dictionary; }
+	}
+
+	public final DictionaryContext dictionary() throws RecognitionException {
+		DictionaryContext _localctx = new DictionaryContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_dictionary);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(147);
+			match(T__16);
+			setState(152);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==STRING) {
+				{
+				{
+				setState(148);
+				match(STRING);
+				setState(149);
+				statement();
+				}
+				}
+				setState(154);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(155);
+			match(T__17);
 			}
 		}
 		catch (RecognitionException re) {
@@ -633,17 +860,17 @@ public class PactorParser extends Parser {
 
 	public final QuoteContext quote() throws RecognitionException {
 		QuoteContext _localctx = new QuoteContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_quote);
+		enterRule(_localctx, 14, RULE_quote);
 		try {
 			_localctx = new CreateQuoteContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(110);
-			match(T__10);
-			setState(111);
+			setState(157);
+			match(T__18);
+			setState(158);
 			block();
-			setState(112);
-			match(T__11);
+			setState(159);
+			match(T__19);
 			}
 		}
 		catch (RecognitionException re) {
@@ -681,19 +908,19 @@ public class PactorParser extends Parser {
 
 	public final Block_commandsContext block_commands() throws RecognitionException {
 		Block_commandsContext _localctx = new Block_commandsContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_block_commands);
+		enterRule(_localctx, 16, RULE_block_commands);
 		int _la;
 		try {
-			setState(124);
+			setState(171);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				_localctx = new CreateLocalVarsContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(114);
-				match(T__12);
-				setState(115);
+				setState(161);
+				match(T__20);
+				setState(162);
 				((CreateLocalVarsContext)_localctx).variable = match(WORD);
 				}
 				break;
@@ -701,26 +928,26 @@ public class PactorParser extends Parser {
 				_localctx = new CreateLocalVarsContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(116);
-				match(T__12);
-				setState(117);
+				setState(163);
+				match(T__20);
+				setState(164);
 				match(T__3);
-				setState(119); 
+				setState(166); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(118);
+					setState(165);
 					((CreateLocalVarsContext)_localctx).WORD = match(WORD);
 					((CreateLocalVarsContext)_localctx).variables.add(((CreateLocalVarsContext)_localctx).WORD);
 					}
 					}
-					setState(121); 
+					setState(168); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==WORD );
-				setState(123);
+				setState(170);
 				match(T__5);
 				}
 				break;
@@ -782,17 +1009,17 @@ public class PactorParser extends Parser {
 
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_statement);
+		enterRule(_localctx, 18, RULE_statement);
 		int _la;
 		try {
-			setState(132);
+			setState(179);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUMBER:
 				_localctx = new PushNumberToStackContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(126);
+				setState(173);
 				((PushNumberToStackContext)_localctx).value = match(NUMBER);
 				}
 				break;
@@ -800,7 +1027,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushFloatToStackContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(127);
+				setState(174);
 				((PushFloatToStackContext)_localctx).value = match(FLOAT);
 				}
 				break;
@@ -808,7 +1035,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushStringToStackContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(128);
+				setState(175);
 				((PushStringToStackContext)_localctx).value = match(STRING);
 				}
 				break;
@@ -816,7 +1043,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushExpressionToStackContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(129);
+				setState(176);
 				((PushExpressionToStackContext)_localctx).value = match(EXPRESSIONS);
 				}
 				break;
@@ -824,7 +1051,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushBooleanToStackContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(130);
+				setState(177);
 				((PushBooleanToStackContext)_localctx).value = match(BOOLEAN);
 				}
 				break;
@@ -833,7 +1060,7 @@ public class PactorParser extends Parser {
 				_localctx = new CommandRunContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(131);
+				setState(178);
 				((CommandRunContext)_localctx).value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==WORD || _la==MATH_WORDS) ) {
@@ -862,43 +1089,63 @@ public class PactorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27\u0089\4\2\t\2"+
-		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\3\2\7\2\24\n"+
-		"\2\f\2\16\2\27\13\2\3\2\7\2\32\n\2\f\2\16\2\35\13\2\3\2\3\2\3\2\7\2\""+
-		"\n\2\f\2\16\2%\13\2\3\2\3\2\3\3\3\3\7\3+\n\3\f\3\16\3.\13\3\3\3\3\3\3"+
-		"\4\3\4\3\4\3\4\7\4\66\n\4\f\4\16\49\13\4\3\4\3\4\7\4=\n\4\f\4\16\4@\13"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4J\n\4\f\4\16\4M\13\4\3\4\3\4\7\4"+
-		"Q\n\4\f\4\16\4T\13\4\3\4\3\4\3\4\3\4\5\4Z\n\4\3\5\3\5\3\5\3\5\7\5`\n\5"+
-		"\f\5\16\5c\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6o\n\6\3\7\3"+
-		"\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\6\bz\n\b\r\b\16\b{\3\b\5\b\177\n\b\3\t"+
-		"\3\t\3\t\3\t\3\t\3\t\5\t\u0087\n\t\3\t\2\2\n\2\4\6\b\n\f\16\20\2\3\3\2"+
-		"\25\26\2\u0098\2\25\3\2\2\2\4(\3\2\2\2\6Y\3\2\2\2\ba\3\2\2\2\nn\3\2\2"+
-		"\2\fp\3\2\2\2\16~\3\2\2\2\20\u0086\3\2\2\2\22\24\5\4\3\2\23\22\3\2\2\2"+
-		"\24\27\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\33\3\2\2\2\27\25\3\2\2\2"+
-		"\30\32\5\6\4\2\31\30\3\2\2\2\32\35\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2"+
-		"\34#\3\2\2\2\35\33\3\2\2\2\36\"\5\20\t\2\37\"\5\n\6\2 \"\5\f\7\2!\36\3"+
-		"\2\2\2!\37\3\2\2\2! \3\2\2\2\"%\3\2\2\2#!\3\2\2\2#$\3\2\2\2$&\3\2\2\2"+
-		"%#\3\2\2\2&\'\7\2\2\3\'\3\3\2\2\2(,\7\3\2\2)+\7\25\2\2*)\3\2\2\2+.\3\2"+
-		"\2\2,*\3\2\2\2,-\3\2\2\2-/\3\2\2\2.,\3\2\2\2/\60\7\4\2\2\60\5\3\2\2\2"+
-		"\61\62\7\5\2\2\62\63\7\25\2\2\63\67\7\6\2\2\64\66\7\25\2\2\65\64\3\2\2"+
-		"\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28:\3\2\2\29\67\3\2\2\2:>\7\7\2"+
-		"\2;=\7\25\2\2<;\3\2\2\2=@\3\2\2\2><\3\2\2\2>?\3\2\2\2?A\3\2\2\2@>\3\2"+
-		"\2\2AB\7\b\2\2BC\5\b\5\2CD\7\4\2\2DZ\3\2\2\2EF\7\t\2\2FG\7\25\2\2GK\7"+
-		"\6\2\2HJ\7\25\2\2IH\3\2\2\2JM\3\2\2\2KI\3\2\2\2KL\3\2\2\2LN\3\2\2\2MK"+
-		"\3\2\2\2NR\7\7\2\2OQ\7\25\2\2PO\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2\2"+
-		"SU\3\2\2\2TR\3\2\2\2UV\7\b\2\2VW\5\b\5\2WX\7\4\2\2XZ\3\2\2\2Y\61\3\2\2"+
-		"\2YE\3\2\2\2Z\7\3\2\2\2[`\5\20\t\2\\`\5\n\6\2]`\5\f\7\2^`\5\16\b\2_[\3"+
-		"\2\2\2_\\\3\2\2\2_]\3\2\2\2_^\3\2\2\2`c\3\2\2\2a_\3\2\2\2ab\3\2\2\2b\t"+
-		"\3\2\2\2ca\3\2\2\2de\5\f\7\2ef\5\f\7\2fg\7\n\2\2go\3\2\2\2hi\5\f\7\2i"+
-		"j\7\13\2\2jo\3\2\2\2kl\5\f\7\2lm\7\f\2\2mo\3\2\2\2nd\3\2\2\2nh\3\2\2\2"+
-		"nk\3\2\2\2o\13\3\2\2\2pq\7\r\2\2qr\5\b\5\2rs\7\16\2\2s\r\3\2\2\2tu\7\17"+
-		"\2\2u\177\7\25\2\2vw\7\17\2\2wy\7\6\2\2xz\7\25\2\2yx\3\2\2\2z{\3\2\2\2"+
-		"{y\3\2\2\2{|\3\2\2\2|}\3\2\2\2}\177\7\b\2\2~t\3\2\2\2~v\3\2\2\2\177\17"+
-		"\3\2\2\2\u0080\u0087\7\21\2\2\u0081\u0087\7\22\2\2\u0082\u0087\7\23\2"+
-		"\2\u0083\u0087\7\20\2\2\u0084\u0087\7\24\2\2\u0085\u0087\t\2\2\2\u0086"+
-		"\u0080\3\2\2\2\u0086\u0081\3\2\2\2\u0086\u0082\3\2\2\2\u0086\u0083\3\2"+
-		"\2\2\u0086\u0084\3\2\2\2\u0086\u0085\3\2\2\2\u0087\21\3\2\2\2\22\25\33"+
-		"!#,\67>KRY_an{~\u0086";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\37\u00b8\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\3\2\7\2\30\n\2\f\2\16\2\33\13\2\3\2\7\2\36\n\2\f\2\16\2!\13\2\3"+
+		"\2\3\2\3\2\7\2&\n\2\f\2\16\2)\13\2\3\2\3\2\3\3\3\3\7\3/\n\3\f\3\16\3\62"+
+		"\13\3\3\3\3\3\3\4\3\4\3\4\3\4\7\4:\n\4\f\4\16\4=\13\4\3\4\3\4\7\4A\n\4"+
+		"\f\4\16\4D\13\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4N\n\4\f\4\16\4Q\13"+
+		"\4\3\4\3\4\7\4U\n\4\f\4\16\4X\13\4\3\4\3\4\3\4\3\4\5\4^\n\4\3\5\3\5\3"+
+		"\5\3\5\7\5d\n\5\f\5\16\5g\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6"+
+		"\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
+		"\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6\u008b\n\6\3\7\3\7\7\7\u008f\n\7\f\7\16"+
+		"\7\u0092\13\7\3\7\3\7\3\b\3\b\3\b\7\b\u0099\n\b\f\b\16\b\u009c\13\b\3"+
+		"\b\3\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\6\n\u00a9\n\n\r\n\16\n\u00aa"+
+		"\3\n\5\n\u00ae\n\n\3\13\3\13\3\13\3\13\3\13\3\13\5\13\u00b6\n\13\3\13"+
+		"\2\2\f\2\4\6\b\n\f\16\20\22\24\2\3\3\2\35\36\2\u00cd\2\31\3\2\2\2\4,\3"+
+		"\2\2\2\6]\3\2\2\2\be\3\2\2\2\n\u008a\3\2\2\2\f\u008c\3\2\2\2\16\u0095"+
+		"\3\2\2\2\20\u009f\3\2\2\2\22\u00ad\3\2\2\2\24\u00b5\3\2\2\2\26\30\5\4"+
+		"\3\2\27\26\3\2\2\2\30\33\3\2\2\2\31\27\3\2\2\2\31\32\3\2\2\2\32\37\3\2"+
+		"\2\2\33\31\3\2\2\2\34\36\5\6\4\2\35\34\3\2\2\2\36!\3\2\2\2\37\35\3\2\2"+
+		"\2\37 \3\2\2\2 \'\3\2\2\2!\37\3\2\2\2\"&\5\24\13\2#&\5\n\6\2$&\5\20\t"+
+		"\2%\"\3\2\2\2%#\3\2\2\2%$\3\2\2\2&)\3\2\2\2\'%\3\2\2\2\'(\3\2\2\2(*\3"+
+		"\2\2\2)\'\3\2\2\2*+\7\2\2\3+\3\3\2\2\2,\60\7\3\2\2-/\7\35\2\2.-\3\2\2"+
+		"\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61\63\3\2\2\2\62\60\3\2\2\2\63"+
+		"\64\7\4\2\2\64\5\3\2\2\2\65\66\7\5\2\2\66\67\7\35\2\2\67;\7\6\2\28:\7"+
+		"\35\2\298\3\2\2\2:=\3\2\2\2;9\3\2\2\2;<\3\2\2\2<>\3\2\2\2=;\3\2\2\2>B"+
+		"\7\7\2\2?A\7\35\2\2@?\3\2\2\2AD\3\2\2\2B@\3\2\2\2BC\3\2\2\2CE\3\2\2\2"+
+		"DB\3\2\2\2EF\7\b\2\2FG\5\b\5\2GH\7\4\2\2H^\3\2\2\2IJ\7\t\2\2JK\7\35\2"+
+		"\2KO\7\6\2\2LN\7\35\2\2ML\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3\2"+
+		"\2\2QO\3\2\2\2RV\7\7\2\2SU\7\35\2\2TS\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3"+
+		"\2\2\2WY\3\2\2\2XV\3\2\2\2YZ\7\b\2\2Z[\5\b\5\2[\\\7\4\2\2\\^\3\2\2\2]"+
+		"\65\3\2\2\2]I\3\2\2\2^\7\3\2\2\2_d\5\24\13\2`d\5\n\6\2ad\5\20\t\2bd\5"+
+		"\22\n\2c_\3\2\2\2c`\3\2\2\2ca\3\2\2\2cb\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef"+
+		"\3\2\2\2f\t\3\2\2\2ge\3\2\2\2hi\5\20\t\2ij\5\20\t\2jk\7\n\2\2k\u008b\3"+
+		"\2\2\2lm\5\20\t\2mn\7\13\2\2n\u008b\3\2\2\2op\5\20\t\2pq\7\f\2\2q\u008b"+
+		"\3\2\2\2rs\5\f\7\2st\5\20\t\2tu\7\r\2\2u\u008b\3\2\2\2vw\5\f\7\2wx\5\20"+
+		"\t\2xy\7\16\2\2y\u008b\3\2\2\2z{\5\f\7\2{|\5\20\t\2|}\7\17\2\2}\u008b"+
+		"\3\2\2\2~\177\5\16\b\2\177\u0080\7\20\2\2\u0080\u008b\3\2\2\2\u0081\u0082"+
+		"\5\24\13\2\u0082\u0083\7\33\2\2\u0083\u0084\5\16\b\2\u0084\u0085\7\21"+
+		"\2\2\u0085\u008b\3\2\2\2\u0086\u0087\7\33\2\2\u0087\u0088\5\16\b\2\u0088"+
+		"\u0089\7\22\2\2\u0089\u008b\3\2\2\2\u008ah\3\2\2\2\u008al\3\2\2\2\u008a"+
+		"o\3\2\2\2\u008ar\3\2\2\2\u008av\3\2\2\2\u008az\3\2\2\2\u008a~\3\2\2\2"+
+		"\u008a\u0081\3\2\2\2\u008a\u0086\3\2\2\2\u008b\13\3\2\2\2\u008c\u0090"+
+		"\7\6\2\2\u008d\u008f\5\24\13\2\u008e\u008d\3\2\2\2\u008f\u0092\3\2\2\2"+
+		"\u0090\u008e\3\2\2\2\u0090\u0091\3\2\2\2\u0091\u0093\3\2\2\2\u0092\u0090"+
+		"\3\2\2\2\u0093\u0094\7\b\2\2\u0094\r\3\2\2\2\u0095\u009a\7\23\2\2\u0096"+
+		"\u0097\7\33\2\2\u0097\u0099\5\24\13\2\u0098\u0096\3\2\2\2\u0099\u009c"+
+		"\3\2\2\2\u009a\u0098\3\2\2\2\u009a\u009b\3\2\2\2\u009b\u009d\3\2\2\2\u009c"+
+		"\u009a\3\2\2\2\u009d\u009e\7\24\2\2\u009e\17\3\2\2\2\u009f\u00a0\7\25"+
+		"\2\2\u00a0\u00a1\5\b\5\2\u00a1\u00a2\7\26\2\2\u00a2\21\3\2\2\2\u00a3\u00a4"+
+		"\7\27\2\2\u00a4\u00ae\7\35\2\2\u00a5\u00a6\7\27\2\2\u00a6\u00a8\7\6\2"+
+		"\2\u00a7\u00a9\7\35\2\2\u00a8\u00a7\3\2\2\2\u00a9\u00aa\3\2\2\2\u00aa"+
+		"\u00a8\3\2\2\2\u00aa\u00ab\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00ae\7\b"+
+		"\2\2\u00ad\u00a3\3\2\2\2\u00ad\u00a5\3\2\2\2\u00ae\23\3\2\2\2\u00af\u00b6"+
+		"\7\31\2\2\u00b0\u00b6\7\32\2\2\u00b1\u00b6\7\33\2\2\u00b2\u00b6\7\30\2"+
+		"\2\u00b3\u00b6\7\34\2\2\u00b4\u00b6\t\2\2\2\u00b5\u00af\3\2\2\2\u00b5"+
+		"\u00b0\3\2\2\2\u00b5\u00b1\3\2\2\2\u00b5\u00b2\3\2\2\2\u00b5\u00b3\3\2"+
+		"\2\2\u00b5\u00b4\3\2\2\2\u00b6\25\3\2\2\2\24\31\37%\'\60;BOV]ce\u008a"+
+		"\u0090\u009a\u00aa\u00ad\u00b5";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

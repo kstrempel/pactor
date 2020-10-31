@@ -8,6 +8,7 @@ from pactor.nodes_commands import *
 from pactor.nodes_stack import *
 from pactor.nodes_using import *
 from pactor.nodes_python import *
+from pactor.nodes_sequence import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -58,6 +59,9 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'py_module': self.ast.add_node(PyModuleNode(ctx))
         elif word == 'py_getattr': self.ast.add_node(PyGetattrNode(ctx))
         elif word == 'py_call': self.ast.add_node(PyCallNode(ctx))
+        elif word == 'each': self.ast.add_node(EachNode(ctx))
+        elif word == 'filter': self.ast.add_node(FilterNode(ctx))
+        elif word == 'reduce': self.ast.add_node(ReduceNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 

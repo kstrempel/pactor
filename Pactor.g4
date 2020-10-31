@@ -21,6 +21,20 @@ commands
 : quote quote 'if'                    # createIf
 | quote 'when'                        # createWhen
 | quote 'times'                       # createTimes
+| array quote 'each'                   # createEach
+| array quote 'filter'                 # createFilter
+| array quote 'reduce'                 # createReduce
+| dictionary 'keys'                   # createGetKeys
+| statement STRING dictionary 'set'   # createSetKeys
+| STRING dictionary 'get'             # createGetKeys
+;
+
+array
+: '(' statement* ')'
+;
+
+dictionary
+: '{' (STRING statement)* '}'
 ;
 
 quote
