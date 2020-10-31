@@ -61,7 +61,7 @@ class TestPrimitiveWords:
 
   def test_create_word_with_local_vars(self):
     script = """
-    ::concat_with_space ( a b -- c ) b " " + a + ;
+    ::concat_with_space ( a b -- c ) a " " + b + ;
     "Hello" "World" concat_with_space
     """
 

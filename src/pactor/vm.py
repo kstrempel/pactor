@@ -19,6 +19,7 @@ class VM:
     # pop parameter to inner stack
     for _ in range(0,stack_size):
       vm.stack.append(self.stack.pop())
+    vm.__stack = vm.stack[::-1]
     return vm
 
   def run(self):
