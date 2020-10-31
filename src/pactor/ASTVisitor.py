@@ -45,17 +45,17 @@ class ASTVisitor(ParseTreeVisitor):
 
     def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
         word = ctx.value.text
-        if word == '+': self.ast.add_node(AddNode())
-        elif word == '-': self.ast.add_node(MinusNode())
-        elif word == '*': self.ast.add_node(MultiplyNode())
-        elif word == '/': self.ast.add_node(DivideNode())
-        elif word == 'dup': self.ast.add_node(DupNode())
-        elif word == 'swap': self.ast.add_node(SwapNode())
-        elif word == 'call': self.ast.add_node(CallNode())
-        elif word == 'str': self.ast.add_node(StrNode())
-        elif word == 'python': self.ast.add_node(PythonNode())
+        if word == '+': self.ast.add_node(AddNode(ctx))
+        elif word == '-': self.ast.add_node(MinusNode(ctx))
+        elif word == '*': self.ast.add_node(MultiplyNode(ctx))
+        elif word == '/': self.ast.add_node(DivideNode(ctx))
+        elif word == 'dup': self.ast.add_node(DupNode(ctx))
+        elif word == 'swap': self.ast.add_node(SwapNode(ctx))
+        elif word == 'call': self.ast.add_node(CallNode(ctx))
+        elif word == 'str': self.ast.add_node(StrNode(ctx))
+        elif word == 'python': self.ast.add_node(PythonNode(ctx))
         else:
-          self.ast.add_node(CallWordOrVariableNode(word))
+          self.ast.add_node(CallWordOrVariableNode(word, ctx))
 
         return self.visitChildren(ctx)
 

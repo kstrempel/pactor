@@ -10,7 +10,7 @@ from pactor.vm import VM
 from pactor.ast import Ast
 from pactor.compiler import load_script
 from pactor.nodes_blocks import WordNode
-
+from pactor.runtime_exceptions import PactorRuntimeError
 
 file_history = FileHistory('.pactor_history')
 
@@ -56,5 +56,9 @@ def repl():
           vm.run_ast(ast)
           pactor_completer.words = set(list(pactor_completer.words) + list(vm.words.keys()))
           print_stack(vm)
+    except PactorRuntimeError as e:
+        print("*** " +e.error_arrow)
+        print("*** " + e.message)
+        print_stack(vm)
     except Exception as e:
         print(f"Error: {e}")

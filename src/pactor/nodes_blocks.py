@@ -1,4 +1,5 @@
 from pactor.vm import VM
+from pactor.node_parent import AstNode
 
 class QuoteNode:
   def __init__(self, ast):
@@ -11,9 +12,10 @@ class QuoteNode:
   def run(self, vm: VM):
       vm.stack.append(self)
 
-class CallWordOrVariableNode:
-    def __init__(self, word):
+class CallWordOrVariableNode(AstNode):
+    def __init__(self, word, ctx):
       self.__word = word
+      super().__init__(ctx)
     def run(self, vm : VM):
       vm.run_word_or_variable(self.__word)
 

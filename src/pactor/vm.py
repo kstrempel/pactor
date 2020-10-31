@@ -1,3 +1,6 @@
+from pactor.runtime_exceptions import PactorRuntimeError
+
+
 class VM:
 
   def __init__(self, ast):
@@ -17,24 +20,38 @@ class VM:
     # pop parameter to inner stack
     for _ in range(0,stack_size):
       vm.stack.append(self.stack.pop())
-
     return vm
 
   def run(self):
     for node in self.__ast.nodes:
-      node.run(self)
+      try:
+        node.run(self)
+      except PactorRuntimeError as e:
+        raise e
+      except Exception as e:
+        raise PactorRuntimeError(e, node)
     return self
 
   def run_ast(self, ast):
     for node in ast.nodes:
-      node.run(self)
+      try:
+        node.run(self)
+      except PactorRuntimeError as e:
+        raise e
+      except Exception as e:
+        raise PactorRuntimeError(e, node)
 
   def run_word_or_variable(self, word_var: str):
     if word_var in self.__words:
       word_node = self.__words[word_var]
       inner_vm = self.create_inner_vm(word_node.from_stack)
       for node in word_node.ast.nodes:
-        node.run(inner_vm)
+        try:
+          node.run(inner_vm)
+        except PactorRuntimeError as e:
+          raise e
+        except Exception as e:
+          raise PactorRuntimeError(e, node)
       # pop return values
       for _ in range(0, word_node.to_stack):
         self.stack.append(inner_vm.stack.pop())
