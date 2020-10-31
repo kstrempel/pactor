@@ -1,1 +1,3 @@
-10 unknown
+:: test ( a b -- c ) a [c *] call;
+
+10 20 test

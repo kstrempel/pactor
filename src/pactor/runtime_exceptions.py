@@ -42,4 +42,4 @@ class PactorUnknownWordOrVariable(InnerPactorRuntimeError):
 
   @property
   def message(self):
-    return f"Unknown word of variable: {self.__word_var}"
+    return f"Unknown word or variable: {self.__word_var}"
