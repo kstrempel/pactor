@@ -59,9 +59,9 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'py_module': self.ast.add_node(PyModuleNode(ctx))
         elif word == 'py_getattr': self.ast.add_node(PyGetattrNode(ctx))
         elif word == 'py_call': self.ast.add_node(PyCallNode(ctx))
-        elif word == 'each': self.ast.add_node(EachNode(ctx))
-        elif word == 'filter': self.ast.add_node(FilterNode(ctx))
-        elif word == 'reduce': self.ast.add_node(ReduceNode(ctx))
+        elif word == 'if': self.ast.add_node(IfNode(ctx))
+        elif word == 'when': self.ast.add_node(WhenNode(ctx))
+        elif word == 'times': self.ast.add_node(TimesNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 
@@ -96,21 +96,6 @@ class ASTVisitor(ParseTreeVisitor):
         result = self.visitChildren(ctx)
         quote_ast = self.ast_decrease()
         self.ast.add_node(QuoteNode(quote_ast, ctx))
-        return result
-
-    def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
-        result = self.visitChildren(ctx)
-        self.ast.add_node(IfNode(ctx))
-        return result
-
-    def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
-        result = self.visitChildren(ctx)
-        self.ast.add_node(WhenNode(ctx))
-        return result
-
-    def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
-        result = self.visitChildren(ctx)
-        self.ast.add_node(TimesNode(ctx))
         return result
 
     def visitCreateUsing(self, ctx:PactorParser.CreateUsingContext):

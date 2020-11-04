@@ -1,7 +1,7 @@
 grammar Pactor;
 
 program
-: using* create_words* (statement|commands|quote)* EOF
+: using* create_words* (statement|quote)* EOF
 ;
 
 using
@@ -14,19 +14,7 @@ create_words
 ;
 
 block
-: (statement|commands|quote|block_commands)*
-;
-
-commands
-: quote quote 'if'                    # createIf
-| quote 'when'                        # createWhen
-| quote 'times'                       # createTimes
-| array quote 'each'                   # createEach
-| array quote 'filter'                 # createFilter
-| array quote 'reduce'                 # createReduce
-| dictionary 'keys'                   # createGetKeys
-| statement STRING dictionary 'set'   # createSetKeys
-| STRING dictionary 'get'             # createGetKeys
+: (statement|quote|block_commands)*
 ;
 
 array
@@ -34,7 +22,7 @@ array
 ;
 
 dictionary
-: '{' (STRING statement)* '}'
+: '{' ( (STRING|NUMBER) (statement|quote))* '}'
 ;
 
 quote

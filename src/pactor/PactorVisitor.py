@@ -34,46 +34,6 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#createIf.
-    def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createWhen.
-    def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createTimes.
-    def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createEach.
-    def visitCreateEach(self, ctx:PactorParser.CreateEachContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createFilter.
-    def visitCreateFilter(self, ctx:PactorParser.CreateFilterContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createReduce.
-    def visitCreateReduce(self, ctx:PactorParser.CreateReduceContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createGetKeys.
-    def visitCreateGetKeys(self, ctx:PactorParser.CreateGetKeysContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#createSetKeys.
-    def visitCreateSetKeys(self, ctx:PactorParser.CreateSetKeysContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by PactorParser#array.
     def visitArray(self, ctx:PactorParser.ArrayContext):
         return self.visitChildren(ctx)
