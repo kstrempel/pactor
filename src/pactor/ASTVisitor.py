@@ -62,6 +62,7 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'if': self.ast.add_node(IfNode(ctx))
         elif word == 'when': self.ast.add_node(WhenNode(ctx))
         elif word == 'times': self.ast.add_node(TimesNode(ctx))
+        elif word == 'each': self.ast.add_node(EachNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 
@@ -121,4 +122,14 @@ class ASTVisitor(ParseTreeVisitor):
             self.ast.add_node(Stack2LocalVarsNode([ctx.variable.text], ctx))
         elif ctx.variables:
             self.ast.add_node(Stack2LocalVarsNode([var.text for var in ctx.variables], ctx))
+        return self.visitChildren(ctx)
+
+    def visitCreateArray(self, ctx:PactorParser.CreateArrayContext):
+        self.ast_increase()
+        result = self.visitChildren(ctx)
+        elements_ast = self.ast_decrease()
+        self.ast.add_node(ArrayNode(elements_ast, ctx))
+        return result
+
+    def visitCreateDictionary(self, ctx:PactorParser.CreateDictionaryContext):
         return self.visitChildren(ctx)

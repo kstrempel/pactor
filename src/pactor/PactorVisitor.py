@@ -34,13 +34,13 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#array.
-    def visitArray(self, ctx:PactorParser.ArrayContext):
+    # Visit a parse tree produced by PactorParser#createArray.
+    def visitCreateArray(self, ctx:PactorParser.CreateArrayContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#dictionary.
-    def visitDictionary(self, ctx:PactorParser.DictionaryContext):
+    # Visit a parse tree produced by PactorParser#createDictionary.
+    def visitCreateDictionary(self, ctx:PactorParser.CreateDictionaryContext):
         return self.visitChildren(ctx)
 
 
