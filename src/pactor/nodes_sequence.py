@@ -1,6 +1,6 @@
 from pactor.vm import VM
 from pactor.node_parent import AstNode
-from pactor.node_stack_helper import pop, push, run_node
+from pactor.node_stack_helper import pop, push, run_node, pop_value
 
 class ArrayNode(AstNode):
   def __init__(self, elements=None, ctx=None):
@@ -41,12 +41,12 @@ class FilterNode(AstNode):
   def run(self, vm: VM):
     quote = pop(vm)
     sequence = pop(vm)
-    result = ArrayNode()
+    filtered = ArrayNode()
     for entry in sequence:
       run_node(vm, entry)
       vm.run_ast(quote.ast)
-      node = vm.stack.pop()
+      result = pop_value(vm)
       if result:
-        result.append(entry)
-    push(vm,result)
+        filtered.append(entry)
+    push(vm,filtered)
 

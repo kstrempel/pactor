@@ -18,5 +18,5 @@ class TestUsing:
     """
 
     vm = self.__run_script(script)
-    assert "Hello" == vm.stack.pop()
+    assert "Hello" == vm.stack.pop().value
 
