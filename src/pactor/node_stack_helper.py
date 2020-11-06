@@ -12,7 +12,6 @@ def two_pop(vm: VM):
 def two_pop_value(vm: VM):
   return vm.stack.pop().value, vm.stack.pop().value
 
-
 def push(vm: VM, value):
   vm.stack.append(value)
 

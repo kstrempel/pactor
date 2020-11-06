@@ -2,6 +2,7 @@ from pactor.vm import VM
 from pactor.node_stack_helper import pop, push
 from pactor.node_parent import AstNode
 from pactor.node_stack_helper import pop, push, pop_value
+from pactor.nodes_primitives import StringNode
 
 class DupNode(AstNode):
   def run(self, vm: VM):
@@ -18,4 +19,4 @@ class SwapNode(AstNode):
 
 class StrNode(AstNode):
   def run(self, vm: VM):
-    push(vm, str(pop_value(vm)))
+    push(vm, StringNode(str(pop_value(vm)), None))
