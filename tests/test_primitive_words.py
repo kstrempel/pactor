@@ -12,13 +12,13 @@ class TestPrimitiveWords:
 
   def test_dup_stack(self):
       stack = self.__run_script('10 dup')
-      assert stack.pop() == 10
-      assert stack.pop() == 10
+      assert stack.pop().value == 10
+      assert stack.pop().value == 10
 
   def test_word_combined_stack(self):
       stack = self.__run_script('10 dup *')
-      assert stack.pop() == 100
+      assert stack.pop().value == 100
 
   def test_swap_stack(self):
       stack = self.__run_script('"World" "Hello " swap +')
-      assert stack.pop() == "Hello World"
+      assert stack.pop().value == "Hello World"

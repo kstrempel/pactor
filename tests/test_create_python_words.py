@@ -17,7 +17,7 @@ class TestPrimitiveWords:
     """
 
     vm = self.__run_script(script)
-    assert "hello" == vm.stack.pop()
+    assert "hello" == vm.stack.pop().value
 
   def test_python_module(self):
     script = """
@@ -43,4 +43,4 @@ class TestPrimitiveWords:
     """
 
     vm = self.__run_script(script)
-    assert vm.stack.pop() == 10
+    assert vm.stack.pop().value == 10

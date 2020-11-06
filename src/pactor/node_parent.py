@@ -1,7 +1,8 @@
 class AstNode:
   def __init__(self, ctx):
-    self.__column = int(ctx.start.column)
-    self.__line = int(ctx.start.line)
+    if ctx:
+      self.__column = int(ctx.start.column)
+      self.__line = int(ctx.start.line)
 
   @property
   def line(self):

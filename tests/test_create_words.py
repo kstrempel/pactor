@@ -26,7 +26,7 @@ class TestPrimitiveWords:
 
     vm = self.__run_script(script)
     assert 'square' in vm.words
-    assert vm.stack.pop() == 100
+    assert vm.stack.pop().value == 100
 
   def test_create_2_words_and_use_it(self):
     script = """
@@ -37,7 +37,7 @@ class TestPrimitiveWords:
 
     vm = self.__run_script(script)
     assert 'square' in vm.words
-    assert vm.stack.pop() == 10000
+    assert vm.stack.pop().value == 10000
 
   def test_create_2dup_and_use_it(self):
     script = """
@@ -46,8 +46,8 @@ class TestPrimitiveWords:
     """
 
     vm = self.__run_script(script)
-    assert vm.stack.pop() == 200
-    assert vm.stack.pop() == 200
+    assert vm.stack.pop().value == 200
+    assert vm.stack.pop().value == 200
 
   def test_create_word_with_quote_and_use_it(self):
     script = """
@@ -56,8 +56,8 @@ class TestPrimitiveWords:
     """
 
     vm = self.__run_script(script)
-    assert vm.stack.pop() == 200
-    assert vm.stack.pop() == 200
+    assert vm.stack.pop().value == 200
+    assert vm.stack.pop().value == 200
 
   def test_create_word_with_local_vars(self):
     script = """
@@ -66,4 +66,4 @@ class TestPrimitiveWords:
     """
 
     vm = self.__run_script(script)
-    assert vm.stack.pop() == "Hello World"
+    assert vm.stack.pop().value == "Hello World"

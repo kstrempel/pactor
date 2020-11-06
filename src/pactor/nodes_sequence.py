@@ -3,28 +3,50 @@ from pactor.node_parent import AstNode
 from pactor.node_stack_helper import pop, push, run_node
 
 class ArrayNode(AstNode):
-  def __init__(self, elements, ctx):
-    super().__init__(ctx)
-    self.__elements = elements.nodes
+  def __init__(self, elements=None, ctx=None):
+    if ctx:
+      super().__init__(ctx)
+    if elements:
+      self.__elements = elements.nodes
+    else:
+      self.__elements = []
   def run(self, vm: VM):
     push(vm, self)
+  def append(self, node: AstNode):
+    self.__elements.append(node)
   def __iter__(self):
     return self.__elements.__iter__()
   def __next__(self):
     return self.__elements.__next__()
 
-class EachNode(AstNode):
+class Seq2StackNode(AstNode):
   def run(self, vm: VM):
-    quote = pop(vm)
     sequence = pop(vm)
     for entry in sequence:
       run_node(vm, entry)
+
+class MapNode(AstNode):
+  def run(self, vm: VM):
+    quote = pop(vm)
+    sequence = pop(vm)
+    result = ArrayNode()
+    for entry in sequence:
+      run_node(vm, entry)
       vm.run_ast(quote.ast)
+      node = pop(vm)
+      result.append(node)
+    push(vm, result)
 
 class FilterNode(AstNode):
   def run(self, vm: VM):
-    pass
+    quote = pop(vm)
+    sequence = pop(vm)
+    result = ArrayNode()
+    for entry in sequence:
+      run_node(vm, entry)
+      vm.run_ast(quote.ast)
+      node = vm.stack.pop()
+      if result:
+        result.append(entry)
+    push(vm,result)
 
-class ReduceNode(AstNode):
-  def run(self, vm: VM):
-    pass
