@@ -12,24 +12,24 @@ class TestPrimitiveMath:
 
   def test_add_numbers(self):
       stack = self.__run_script("10 20 +")
-      assert stack.pop() == 30
+      assert stack.pop().value == 30
 
   def test_add_string(self):
       stack = self.__run_script('"a" "bc" +')
-      assert stack.pop() == 'abc'
+      assert stack.pop().value == 'abc'
 
   def test_minus_numbers(self):
       stack = self.__run_script("10 5 -")
-      assert stack.pop() == 5
+      assert stack.pop().value == 5
 
   def test_times_numbers(self):
       stack = self.__run_script("5 8 *")
-      assert stack.pop() == 40
+      assert stack.pop().value == 40
 
   def test_divide_numbers(self):
       stack = self.__run_script("10 20 /")
-      assert stack.pop() == 0.5
+      assert stack.pop().value == 0.5
 
   def test_combined_numbers(self):
       stack = self.__run_script("10 20 / 10 + 4 * 2 /")
-      assert stack.pop() == 21.0
+      assert stack.pop().value == 21.0

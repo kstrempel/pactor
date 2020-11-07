@@ -52,3 +52,6 @@ venv/
 
 # pactor generated files
 .pactor_history
+
+# antlr
+.antlr/

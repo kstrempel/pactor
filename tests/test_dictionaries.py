@@ -1,7 +1,7 @@
 from pactor.compiler import load_script
 from pactor.vm import VM
 
-class TestUsing:
+class TestDictionary:
 
   def __run_script(self, script):
       ast = load_script(script)
@@ -10,13 +10,8 @@ class TestUsing:
 
       return vm
 
-  def test_using_str_package(self):
+  def test_dictonary(self):
     script = """
-    USING: str kernel;
-
-    "olleH" reverse_string
+    { "1" 1 "2" 2 "3" 3 "4" 4 "5" 5 }
     """
-
-    vm = self.__run_script(script)
-    assert "Hello" == vm.stack.pop().value
 

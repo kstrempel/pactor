@@ -16,7 +16,7 @@ class TestBlockCommands:
     """
 
     vm = self.__run_script(script)
-    assert 30 == vm.stack.pop()
+    assert 30 == vm.stack.pop().value
 
   def test_using_local_vars(self):
     script = """
@@ -24,4 +24,4 @@ class TestBlockCommands:
     """
 
     vm = self.__run_script(script)
-    assert 30 == vm.stack.pop()
+    assert 30 == vm.stack.pop().value

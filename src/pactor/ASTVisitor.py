@@ -8,6 +8,7 @@ from pactor.nodes_commands import *
 from pactor.nodes_stack import *
 from pactor.nodes_using import *
 from pactor.nodes_python import *
+from pactor.nodes_sequence import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -58,6 +59,13 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'py_module': self.ast.add_node(PyModuleNode(ctx))
         elif word == 'py_getattr': self.ast.add_node(PyGetattrNode(ctx))
         elif word == 'py_call': self.ast.add_node(PyCallNode(ctx))
+        elif word == 'if': self.ast.add_node(IfNode(ctx))
+        elif word == 'when': self.ast.add_node(WhenNode(ctx))
+        elif word == 'times': self.ast.add_node(TimesNode(ctx))
+        elif word == 'map': self.ast.add_node(MapNode(ctx))
+        elif word == 'filter': self.ast.add_node(FilterNode(ctx))
+        elif word == 'reduce': self.ast.add_node(ReduceNode(ctx))
+        elif word == 'seq2stack': self.ast.add_node(Seq2StackNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 
@@ -94,21 +102,6 @@ class ASTVisitor(ParseTreeVisitor):
         self.ast.add_node(QuoteNode(quote_ast, ctx))
         return result
 
-    def visitCreateIf(self, ctx:PactorParser.CreateIfContext):
-        result = self.visitChildren(ctx)
-        self.ast.add_node(IfNode(ctx))
-        return result
-
-    def visitCreateWhen(self, ctx:PactorParser.CreateWhenContext):
-        result = self.visitChildren(ctx)
-        self.ast.add_node(WhenNode(ctx))
-        return result
-
-    def visitCreateTimes(self, ctx:PactorParser.CreateTimesContext):
-        result = self.visitChildren(ctx)
-        self.ast.add_node(TimesNode(ctx))
-        return result
-
     def visitCreateUsing(self, ctx:PactorParser.CreateUsingContext):
         result = self.visitChildren(ctx)
         for package in ctx.packages:
@@ -132,4 +125,14 @@ class ASTVisitor(ParseTreeVisitor):
             self.ast.add_node(Stack2LocalVarsNode([ctx.variable.text], ctx))
         elif ctx.variables:
             self.ast.add_node(Stack2LocalVarsNode([var.text for var in ctx.variables], ctx))
+        return self.visitChildren(ctx)
+
+    def visitCreateArray(self, ctx:PactorParser.CreateArrayContext):
+        self.ast_increase()
+        result = self.visitChildren(ctx)
+        elements_ast = self.ast_decrease()
+        self.ast.add_node(ArrayNode(elements_ast, ctx))
+        return result
+
+    def visitCreateDictionary(self, ctx:PactorParser.CreateDictionaryContext):
         return self.visitChildren(ctx)

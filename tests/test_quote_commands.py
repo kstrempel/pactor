@@ -16,7 +16,7 @@ class TestQuoteCommands:
     """
 
     vm = self.__run_script(script)
-    assert 100 == vm.stack.pop()
+    assert 100 == vm.stack.pop().value
 
 
   def test_quote_in_quote_and_call(self):
@@ -25,7 +25,7 @@ class TestQuoteCommands:
     """
 
     vm = self.__run_script(script)
-    assert 100 == vm.stack.pop()
+    assert 100 == vm.stack.pop().value
 
   def test_quote_and_when(self):
     script = """
@@ -33,14 +33,14 @@ class TestQuoteCommands:
     """
 
     vm = self.__run_script(script)
-    assert 100 == vm.stack.pop()
+    assert 100 == vm.stack.pop().value
 
     script = """
     10 f [ 10 * ] when
     """
 
     vm = self.__run_script(script)
-    assert 10 == vm.stack.pop()
+    assert 10 == vm.stack.pop().value
 
 
   def test_quote_and_times(self):
@@ -49,7 +49,7 @@ class TestQuoteCommands:
     """
 
     vm = self.__run_script(script)
-    assert 1024 == vm.stack.pop()
+    assert 1024 == vm.stack.pop().value
 
   def test_quote_and_if(self):
     script = """
@@ -57,12 +57,12 @@ class TestQuoteCommands:
     """
 
     vm = self.__run_script(script)
-    assert 2 == vm.stack.pop()
+    assert 2 == vm.stack.pop().value
 
     script = """
     1 f [ 1 + ] [ 1 - ] if
     """
 
     vm = self.__run_script(script)
-    assert 0 == vm.stack.pop()
+    assert 0 == vm.stack.pop().value
 

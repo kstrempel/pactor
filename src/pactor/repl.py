@@ -27,7 +27,7 @@ pactor_completer = WordCompleter(['dup', 'str', 'swap', 'call', 'python',
 def print_stack(vm: VM):
   print("--- Data stack:")
   for node in vm.stack:
-      print(node)
+      print(str(node))
 
 def repl():
   session = PromptSession(message=">>> ",

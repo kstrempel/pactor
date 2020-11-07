@@ -13,17 +13,17 @@ class TestPrimitiveStack:
   def test_add_number(self):
       stack = self.__run_script("10 20")
 
-      assert stack.pop() == 20
-      assert stack.pop() == 10
+      assert stack.pop().value == 20
+      assert stack.pop().value == 10
 
   def test_add_float(self):
       stack = self.__run_script("10.1 20.5")
 
-      assert stack.pop() == 20.5
-      assert stack.pop() == 10.1
+      assert stack.pop().value == 20.5
+      assert stack.pop().value == 10.1
 
   def test_add_string(self):
       stack = self.__run_script('"hello" "hallo"')
 
-      assert stack.pop() == "hallo"
-      assert stack.pop() == "hello"
+      assert stack.pop().value == "hallo"
+      assert stack.pop().value == "hello"
