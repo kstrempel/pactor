@@ -9,6 +9,7 @@ from pactor.nodes_stack import *
 from pactor.nodes_using import *
 from pactor.nodes_python import *
 from pactor.nodes_sequence import *
+from pactor.nodes_dictionary import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -62,10 +63,17 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'if': self.ast.add_node(IfNode(ctx))
         elif word == 'when': self.ast.add_node(WhenNode(ctx))
         elif word == 'times': self.ast.add_node(TimesNode(ctx))
-        elif word == 'map': self.ast.add_node(MapNode(ctx))
-        elif word == 'filter': self.ast.add_node(FilterNode(ctx))
-        elif word == 'reduce': self.ast.add_node(ReduceNode(ctx))
-        elif word == 'seq2stack': self.ast.add_node(Seq2StackNode(ctx))
+        elif word == 's>map': self.ast.add_node(MapNode(ctx))
+        elif word == 's>filter': self.ast.add_node(FilterNode(ctx))
+        elif word == 's>reduce': self.ast.add_node(ReduceNode(ctx))
+        elif word == 's>stack': self.ast.add_node(Seq2StackNode(ctx))
+        elif word == 'd>keys': self.ast.add_node(KeysDictNode(ctx))
+        elif word == 'd>update': self.ast.add_node(UpdateDictNode(ctx))
+        elif word == 'd>contains?': self.ast.add_node(ContainsDictNode(ctx))
+        elif word == 'd>value': self.ast.add_node(ValueDictNode(ctx))
+        elif word == 'd>pop': self.ast.add_node(PopDictNode(ctx))
+        elif word == 'null': self.ast.add_node(NullNode(ctx))
+        elif word == 'null?': self.ast.add_node(IsNullNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 
@@ -135,4 +143,15 @@ class ASTVisitor(ParseTreeVisitor):
         return result
 
     def visitCreateDictionary(self, ctx:PactorParser.CreateDictionaryContext):
-        return self.visitChildren(ctx)
+        self.ast_increase()
+        result = self.visitChildren(ctx)
+        elements_ast = self.ast_decrease()
+        self.ast.add_node(DictNode(elements_ast.nodes,ctx))
+        return result
+
+    def visitCreateDictionaryEntry(self, ctx:PactorParser.CreateDictionaryEntryContext):
+        self.ast_increase()
+        result = self.visitChildren(ctx)
+        entry_ast = self.ast_decrease()
+        self.ast.add_node(DictEntry(entry_ast.nodes[0], entry_ast.nodes[1]))
+        return result
