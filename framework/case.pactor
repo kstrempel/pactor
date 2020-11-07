@@ -1,0 +1,2 @@
+:: case ( key dict -- value)
+  key dict contains [key dict value] [:default dict value] if;

@@ -39,7 +39,7 @@ class TestDictionary(Helper):
       assert stack.pop().value == 2
       assert stack.pop().value == 1
 
-  def test_dictonary_repalce_update(self):
+  def test_dictonary_replace_update(self):
       script = """
       { 1 10 2 20 3 30 } 3 40 update keys seq2stack
       """
@@ -47,3 +47,10 @@ class TestDictionary(Helper):
       assert stack.pop().value == 3
       assert stack.pop().value == 2
       assert stack.pop().value == 1
+
+  def test_dictonary_case(self):
+      script = """
+      2 { 1 10 2 20 3 30 } case
+      """
+      stack = self.run_script(script).stack
+      assert stack.pop().value == 20

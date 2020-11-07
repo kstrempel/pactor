@@ -69,6 +69,11 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'seq2stack': self.ast.add_node(Seq2StackNode(ctx))
         elif word == 'keys': self.ast.add_node(KeysDictNode(ctx))
         elif word == 'update': self.ast.add_node(UpdateDictNode(ctx))
+        elif word == 'contains?': self.ast.add_node(ContainsDictNode(ctx))
+        elif word == 'value': self.ast.add_node(ValueDictNode(ctx))
+        elif word == 'delete': self.ast.add_node(DeleteDictNode(ctx))
+        elif word == 'null': self.ast.add_node(NullNode(ctx))
+        elif word == 'null?': self.ast.add_node(IsNullNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 

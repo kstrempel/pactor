@@ -45,3 +45,18 @@ class UpdateDictNode(AstNode):
     dict = pop(vm)
     dict.value.update({key.value: (key, value)})
     push(vm, dict)
+
+class ContainsDictNode(AstNode):
+  def run(self, vm:VM):
+    key = pop(vm)
+    dict = pop(vm)
+
+class ValueDictNode(AstNode):
+  def run(self, vm:VM):
+    key = pop(vm)
+    dict = pop(vm)
+
+class DeleteDictNode(AstNode):
+  def run(self, vm:VM):
+    key = pop(vm)
+    dict = pop(vm)
