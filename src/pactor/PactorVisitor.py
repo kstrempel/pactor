@@ -94,5 +94,10 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#pushSymbolToStack.
+    def visitPushSymbolToStack(self, ctx:PactorParser.PushSymbolToStackContext):
+        return self.visitChildren(ctx)
+
+
 
 del PactorParser

@@ -1,5 +1,4 @@
 USING: kernel;
 
+# square -- calculates the square from 1 stack value
 :square ( x -- y) dup *;
-
-:random ( min max -- r) 2 "random" py_module "randint" py_getattr py_call;

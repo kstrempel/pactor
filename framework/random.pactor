@@ -1,8 +1,10 @@
 
-
+# random_seed -- init the randomizer related to the time
 :random_seed (--) "random" py_module "seed" py_getattr py_call;
 
+# random_int -- returns a random number between 2 stack int values
 :random_int ( min max -- r) 2 "random" py_module "randint" py_getattr py_call;
 
+# random -- returns a random number between 0 and 1.0
 :random (  -- r) 0 "random" py_module "random" py_getattr py_call;
 

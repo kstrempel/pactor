@@ -53,6 +53,12 @@ non_key_value
 key_value
 : value=NUMBER             # pushNumberToStack
 | value=STRING             # pushStringToStack
+| value=':' STRING         # pushSymbolToStack
+;
+
+
+COMMENT
+:  '#' ~( '\r' | '\n' )* -> skip
 ;
 
 EXPRESSIONS
