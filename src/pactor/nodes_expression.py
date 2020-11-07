@@ -9,7 +9,7 @@ class BooleanNode(AstNode):
   def run(self, vm: VM):
       vm.stack.append(self)
   def __repr__(self):
-    return repr(str(self.value))
+    return 't' if self.__value else 'f'
   @property
   def value(self):
     return self.__value

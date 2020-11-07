@@ -18,6 +18,8 @@ class AddNode(AstNode):
     value2 = pop_value(vm)
     value = create_node(value2 + value1)
     push(vm, value)
+  def __repr__(self):
+    return '+'
 
 class MinusNode(AstNode):
   def run(self, vm: VM):
@@ -25,11 +27,15 @@ class MinusNode(AstNode):
     value2 = pop_value(vm)
     value = create_node(value2 - value1)
     push(vm, value)
+  def __repr__(self):
+    return '-'
 
 class MultiplyNode(AstNode):
   def run(self, vm: VM):
     value = create_node(pop_value(vm) * pop_value(vm))
     push(vm, value)
+  def __repr__(self):
+    return '*'
 
 class DivideNode(AstNode):
   def run(self, vm: VM):
@@ -37,3 +43,5 @@ class DivideNode(AstNode):
     value2 = pop_value(vm)
     value = create_node(value2 / value1)
     push(vm, value)
+  def __repr__(self):
+    return '/'

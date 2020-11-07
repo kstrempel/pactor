@@ -5,7 +5,8 @@ class QuoteNode(AstNode):
   def __init__(self, ast, ctx):
     super().__init__(ctx)
     self.__ast = ast
-
+  def __repr__(self):
+    return '[' + " ".join([str(e) for e in self.__ast.nodes]) + ']'
   @property
   def ast(self):
     return self.__ast
@@ -51,6 +52,8 @@ class CallNode(AstNode):
   def run(self, vm: VM):
     quote = vm.stack.pop()
     vm.run_ast(quote.ast)
+  def __repr__(self):
+    return 'call'
 
 class Stack2LocalVarsNode(AstNode):
   def __init__(self, local_vars, ctx):
@@ -59,3 +62,5 @@ class Stack2LocalVarsNode(AstNode):
   def run(self, vm: VM):
     for name in self.__local_vars[::-1]:
       vm.add_local(name)
+  def __repr__(self):
+    return '-> (' + " ".join([e for e in self.__local_vars]) + ')'
