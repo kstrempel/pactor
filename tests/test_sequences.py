@@ -12,7 +12,7 @@ class TestSequences:
 
   def test_map(self):
     script = """
-    (1 2 3 4 5 6 7) [1 +] map seq2stack
+    (1 2 3 4 5 6 7) [1 +] s>map s>stack
     """
     stack = self.__run_script(script)
     assert stack.pop().value == 8
@@ -26,7 +26,7 @@ class TestSequences:
 
   def test_filter(self):
     script = """
-    (1 2 3 4 5 6 7) [4 >] filter seq2stack
+    (1 2 3 4 5 6 7) [4 >] s>filter s>stack
     """
     stack = self.__run_script(script)
     assert stack.pop().value == 7
@@ -36,7 +36,7 @@ class TestSequences:
 
   def test_reduce_like(self):
     script = """
-    (1 2 3 4 5 6 7) 0 [ + ] reduce
+    (1 2 3 4 5 6 7) 0 [ + ] s>reduce
     """
     stack = self.__run_script(script)
     assert stack.pop().value == 28

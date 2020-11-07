@@ -1,7 +1,9 @@
 from pactor.vm import VM
 from pactor.node_parent import AstNode
-from pactor.node_stack_helper import push, pop
+from pactor.node_stack_helper import push, pop, pop_value
 from pactor.nodes_sequence import ArrayNode
+from pactor.nodes_expression import BooleanNode, NullNode
+
 
 class DictEntry:
   def __init__(self, key, value):
@@ -48,15 +50,25 @@ class UpdateDictNode(AstNode):
 
 class ContainsDictNode(AstNode):
   def run(self, vm:VM):
-    key = pop(vm)
+    key = pop_value(vm)
     dict = pop(vm)
+    push(vm, BooleanNode(key in dict.value, None))
 
 class ValueDictNode(AstNode):
   def run(self, vm:VM):
-    key = pop(vm)
+    key = pop_value(vm)
     dict = pop(vm)
+    if key in dict.value:
+      push(vm, dict.value[key][1])
+    else:
+      push(vm, NullNode(None))
 
-class DeleteDictNode(AstNode):
+class PopDictNode(AstNode):
   def run(self, vm:VM):
-    key = pop(vm)
+    key = pop_value(vm)
     dict = pop(vm)
+    value = NullNode(None)
+    if key in dict.value:
+      value = dict.value.pop(key)[1]
+    push(vm, dict)
+    push(vm, value)

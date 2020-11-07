@@ -80,3 +80,9 @@ class TestBooleanExpressions:
     assert True == vm.stack.pop().value
     assert True == vm.stack.pop().value
     assert True == vm.stack.pop().value
+
+  def test_null_and_isnull(self):
+    script = "null null?"
+
+    vm = self.__run_script(script)
+    assert True == vm.stack.pop().value
