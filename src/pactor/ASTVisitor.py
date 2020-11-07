@@ -64,6 +64,7 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'times': self.ast.add_node(TimesNode(ctx))
         elif word == 'map': self.ast.add_node(MapNode(ctx))
         elif word == 'filter': self.ast.add_node(FilterNode(ctx))
+        elif word == 'reduce': self.ast.add_node(ReduceNode(ctx))
         elif word == 'seq2stack': self.ast.add_node(Seq2StackNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))

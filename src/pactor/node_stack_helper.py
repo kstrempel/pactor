@@ -17,3 +17,6 @@ def push(vm: VM, value):
 
 def run_node(vm: VM, node):
   node.run(vm)
+
+def repr(value: str):
+  return "<" + value + ">"

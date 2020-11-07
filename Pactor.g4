@@ -22,7 +22,7 @@ array
 ;
 
 dictionary
-: '{' ( (STRING|NUMBER) (statement|quote))* '}' #createDictionary
+: '{' (statement|quote)* '}' #createDictionary
 ;
 
 quote

@@ -1,5 +1,5 @@
 from pactor.vm import VM
-from pactor.node_stack_helper import two_pop_value, push, pop_value
+from pactor.node_stack_helper import two_pop_value, push, pop_value, repr
 from pactor.node_parent import AstNode
 
 class BooleanNode(AstNode):
@@ -9,7 +9,7 @@ class BooleanNode(AstNode):
   def run(self, vm: VM):
       vm.stack.append(self)
   def __repr__(self):
-    return str(self.value)
+    return repr(str(self.value))
   @property
   def value(self):
     return self.__value

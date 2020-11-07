@@ -641,14 +641,6 @@ public class PactorParser extends Parser {
 		}
 	}
 	public static class CreateDictionaryContext extends DictionaryContext {
-		public List<TerminalNode> STRING() { return getTokens(PactorParser.STRING); }
-		public TerminalNode STRING(int i) {
-			return getToken(PactorParser.STRING, i);
-		}
-		public List<TerminalNode> NUMBER() { return getTokens(PactorParser.NUMBER); }
-		public TerminalNode NUMBER(int i) {
-			return getToken(PactorParser.NUMBER, i);
-		}
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
@@ -674,23 +666,12 @@ public class PactorParser extends Parser {
 			{
 			setState(111);
 			match(T__7);
-			setState(119);
+			setState(116);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==NUMBER || _la==STRING) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__9) | (1L << EXPRESSIONS) | (1L << NUMBER) | (1L << FLOAT) | (1L << STRING) | (1L << BOOLEAN) | (1L << WORD) | (1L << MATH_WORDS))) != 0)) {
 				{
-				{
-				setState(112);
-				_la = _input.LA(1);
-				if ( !(_la==NUMBER || _la==STRING) ) {
-				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				setState(115);
+				setState(114);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case EXPRESSIONS:
@@ -701,13 +682,13 @@ public class PactorParser extends Parser {
 				case WORD:
 				case MATH_WORDS:
 					{
-					setState(113);
+					setState(112);
 					statement();
 					}
 					break;
 				case T__9:
 					{
-					setState(114);
+					setState(113);
 					quote();
 					}
 					break;
@@ -715,12 +696,11 @@ public class PactorParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				}
-				setState(121);
+				setState(118);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(122);
+			setState(119);
 			match(T__8);
 			}
 		}
@@ -760,11 +740,11 @@ public class PactorParser extends Parser {
 			_localctx = new CreateQuoteContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(124);
+			setState(121);
 			match(T__9);
-			setState(125);
+			setState(122);
 			block();
-			setState(126);
+			setState(123);
 			match(T__10);
 			}
 		}
@@ -806,16 +786,16 @@ public class PactorParser extends Parser {
 		enterRule(_localctx, 14, RULE_block_commands);
 		int _la;
 		try {
-			setState(138);
+			setState(135);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				_localctx = new CreateLocalVarsContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(128);
+				setState(125);
 				match(T__11);
-				setState(129);
+				setState(126);
 				((CreateLocalVarsContext)_localctx).variable = match(WORD);
 				}
 				break;
@@ -823,26 +803,26 @@ public class PactorParser extends Parser {
 				_localctx = new CreateLocalVarsContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(130);
+				setState(127);
 				match(T__11);
-				setState(131);
+				setState(128);
 				match(T__3);
-				setState(133); 
+				setState(130); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(132);
+					setState(129);
 					((CreateLocalVarsContext)_localctx).WORD = match(WORD);
 					((CreateLocalVarsContext)_localctx).variables.add(((CreateLocalVarsContext)_localctx).WORD);
 					}
 					}
-					setState(135); 
+					setState(132); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==WORD );
-				setState(137);
+				setState(134);
 				match(T__5);
 				}
 				break;
@@ -907,14 +887,14 @@ public class PactorParser extends Parser {
 		enterRule(_localctx, 16, RULE_statement);
 		int _la;
 		try {
-			setState(146);
+			setState(143);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUMBER:
 				_localctx = new PushNumberToStackContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(140);
+				setState(137);
 				((PushNumberToStackContext)_localctx).value = match(NUMBER);
 				}
 				break;
@@ -922,7 +902,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushFloatToStackContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(141);
+				setState(138);
 				((PushFloatToStackContext)_localctx).value = match(FLOAT);
 				}
 				break;
@@ -930,7 +910,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushStringToStackContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(142);
+				setState(139);
 				((PushStringToStackContext)_localctx).value = match(STRING);
 				}
 				break;
@@ -938,7 +918,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushExpressionToStackContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(143);
+				setState(140);
 				((PushExpressionToStackContext)_localctx).value = match(EXPRESSIONS);
 				}
 				break;
@@ -946,7 +926,7 @@ public class PactorParser extends Parser {
 				_localctx = new PushBooleanToStackContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(144);
+				setState(141);
 				((PushBooleanToStackContext)_localctx).value = match(BOOLEAN);
 				}
 				break;
@@ -955,7 +935,7 @@ public class PactorParser extends Parser {
 				_localctx = new CommandRunContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(145);
+				setState(142);
 				((CommandRunContext)_localctx).value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==WORD || _la==MATH_WORDS) ) {
@@ -984,7 +964,7 @@ public class PactorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26\u0097\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26\u0094\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\7"+
 		"\2\26\n\2\f\2\16\2\31\13\2\3\2\7\2\34\n\2\f\2\16\2\37\13\2\3\2\3\2\3\2"+
 		"\3\2\7\2%\n\2\f\2\16\2(\13\2\3\2\3\2\3\3\3\3\7\3.\n\3\f\3\16\3\61\13\3"+
@@ -992,41 +972,39 @@ public class PactorParser extends Parser {
 		"\16\4C\13\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4M\n\4\f\4\16\4P\13\4\3"+
 		"\4\3\4\7\4T\n\4\f\4\16\4W\13\4\3\4\3\4\3\4\3\4\5\4]\n\4\3\5\3\5\3\5\3"+
 		"\5\3\5\7\5d\n\5\f\5\16\5g\13\5\3\6\3\6\7\6k\n\6\f\6\16\6n\13\6\3\6\3\6"+
-		"\3\7\3\7\3\7\3\7\5\7v\n\7\7\7x\n\7\f\7\16\7{\13\7\3\7\3\7\3\b\3\b\3\b"+
-		"\3\b\3\t\3\t\3\t\3\t\3\t\6\t\u0088\n\t\r\t\16\t\u0089\3\t\5\t\u008d\n"+
-		"\t\3\n\3\n\3\n\3\n\3\n\3\n\5\n\u0095\n\n\3\n\2\2\13\2\4\6\b\n\f\16\20"+
-		"\22\2\4\4\2\20\20\22\22\3\2\24\25\2\u00a8\2\27\3\2\2\2\4+\3\2\2\2\6\\"+
-		"\3\2\2\2\be\3\2\2\2\nh\3\2\2\2\fq\3\2\2\2\16~\3\2\2\2\20\u008c\3\2\2\2"+
-		"\22\u0094\3\2\2\2\24\26\5\4\3\2\25\24\3\2\2\2\26\31\3\2\2\2\27\25\3\2"+
-		"\2\2\27\30\3\2\2\2\30\35\3\2\2\2\31\27\3\2\2\2\32\34\5\6\4\2\33\32\3\2"+
-		"\2\2\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36&\3\2\2\2\37\35\3\2\2"+
-		"\2 %\5\22\n\2!%\5\16\b\2\"%\5\n\6\2#%\5\f\7\2$ \3\2\2\2$!\3\2\2\2$\"\3"+
-		"\2\2\2$#\3\2\2\2%(\3\2\2\2&$\3\2\2\2&\'\3\2\2\2\')\3\2\2\2(&\3\2\2\2)"+
-		"*\7\2\2\3*\3\3\2\2\2+/\7\3\2\2,.\7\24\2\2-,\3\2\2\2.\61\3\2\2\2/-\3\2"+
-		"\2\2/\60\3\2\2\2\60\62\3\2\2\2\61/\3\2\2\2\62\63\7\4\2\2\63\5\3\2\2\2"+
-		"\64\65\7\5\2\2\65\66\7\24\2\2\66:\7\6\2\2\679\7\24\2\28\67\3\2\2\29<\3"+
-		"\2\2\2:8\3\2\2\2:;\3\2\2\2;=\3\2\2\2<:\3\2\2\2=A\7\7\2\2>@\7\24\2\2?>"+
-		"\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BD\3\2\2\2CA\3\2\2\2DE\7\b\2\2E"+
-		"F\5\b\5\2FG\7\4\2\2G]\3\2\2\2HI\7\t\2\2IJ\7\24\2\2JN\7\6\2\2KM\7\24\2"+
-		"\2LK\3\2\2\2MP\3\2\2\2NL\3\2\2\2NO\3\2\2\2OQ\3\2\2\2PN\3\2\2\2QU\7\7\2"+
-		"\2RT\7\24\2\2SR\3\2\2\2TW\3\2\2\2US\3\2\2\2UV\3\2\2\2VX\3\2\2\2WU\3\2"+
-		"\2\2XY\7\b\2\2YZ\5\b\5\2Z[\7\4\2\2[]\3\2\2\2\\\64\3\2\2\2\\H\3\2\2\2]"+
-		"\7\3\2\2\2^d\5\22\n\2_d\5\16\b\2`d\5\20\t\2ad\5\n\6\2bd\5\f\7\2c^\3\2"+
-		"\2\2c_\3\2\2\2c`\3\2\2\2ca\3\2\2\2cb\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2"+
-		"\2\2f\t\3\2\2\2ge\3\2\2\2hl\7\6\2\2ik\5\22\n\2ji\3\2\2\2kn\3\2\2\2lj\3"+
-		"\2\2\2lm\3\2\2\2mo\3\2\2\2nl\3\2\2\2op\7\b\2\2p\13\3\2\2\2qy\7\n\2\2r"+
-		"u\t\2\2\2sv\5\22\n\2tv\5\16\b\2us\3\2\2\2ut\3\2\2\2vx\3\2\2\2wr\3\2\2"+
-		"\2x{\3\2\2\2yw\3\2\2\2yz\3\2\2\2z|\3\2\2\2{y\3\2\2\2|}\7\13\2\2}\r\3\2"+
-		"\2\2~\177\7\f\2\2\177\u0080\5\b\5\2\u0080\u0081\7\r\2\2\u0081\17\3\2\2"+
-		"\2\u0082\u0083\7\16\2\2\u0083\u008d\7\24\2\2\u0084\u0085\7\16\2\2\u0085"+
-		"\u0087\7\6\2\2\u0086\u0088\7\24\2\2\u0087\u0086\3\2\2\2\u0088\u0089\3"+
-		"\2\2\2\u0089\u0087\3\2\2\2\u0089\u008a\3\2\2\2\u008a\u008b\3\2\2\2\u008b"+
-		"\u008d\7\b\2\2\u008c\u0082\3\2\2\2\u008c\u0084\3\2\2\2\u008d\21\3\2\2"+
-		"\2\u008e\u0095\7\20\2\2\u008f\u0095\7\21\2\2\u0090\u0095\7\22\2\2\u0091"+
-		"\u0095\7\17\2\2\u0092\u0095\7\23\2\2\u0093\u0095\t\3\2\2\u0094\u008e\3"+
-		"\2\2\2\u0094\u008f\3\2\2\2\u0094\u0090\3\2\2\2\u0094\u0091\3\2\2\2\u0094"+
-		"\u0092\3\2\2\2\u0094\u0093\3\2\2\2\u0095\23\3\2\2\2\24\27\35$&/:ANU\\"+
-		"celuy\u0089\u008c\u0094";
+		"\3\7\3\7\3\7\7\7u\n\7\f\7\16\7x\13\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3"+
+		"\t\3\t\3\t\6\t\u0085\n\t\r\t\16\t\u0086\3\t\5\t\u008a\n\t\3\n\3\n\3\n"+
+		"\3\n\3\n\3\n\5\n\u0092\n\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\3\3\2\24"+
+		"\25\2\u00a5\2\27\3\2\2\2\4+\3\2\2\2\6\\\3\2\2\2\be\3\2\2\2\nh\3\2\2\2"+
+		"\fq\3\2\2\2\16{\3\2\2\2\20\u0089\3\2\2\2\22\u0091\3\2\2\2\24\26\5\4\3"+
+		"\2\25\24\3\2\2\2\26\31\3\2\2\2\27\25\3\2\2\2\27\30\3\2\2\2\30\35\3\2\2"+
+		"\2\31\27\3\2\2\2\32\34\5\6\4\2\33\32\3\2\2\2\34\37\3\2\2\2\35\33\3\2\2"+
+		"\2\35\36\3\2\2\2\36&\3\2\2\2\37\35\3\2\2\2 %\5\22\n\2!%\5\16\b\2\"%\5"+
+		"\n\6\2#%\5\f\7\2$ \3\2\2\2$!\3\2\2\2$\"\3\2\2\2$#\3\2\2\2%(\3\2\2\2&$"+
+		"\3\2\2\2&\'\3\2\2\2\')\3\2\2\2(&\3\2\2\2)*\7\2\2\3*\3\3\2\2\2+/\7\3\2"+
+		"\2,.\7\24\2\2-,\3\2\2\2.\61\3\2\2\2/-\3\2\2\2/\60\3\2\2\2\60\62\3\2\2"+
+		"\2\61/\3\2\2\2\62\63\7\4\2\2\63\5\3\2\2\2\64\65\7\5\2\2\65\66\7\24\2\2"+
+		"\66:\7\6\2\2\679\7\24\2\28\67\3\2\2\29<\3\2\2\2:8\3\2\2\2:;\3\2\2\2;="+
+		"\3\2\2\2<:\3\2\2\2=A\7\7\2\2>@\7\24\2\2?>\3\2\2\2@C\3\2\2\2A?\3\2\2\2"+
+		"AB\3\2\2\2BD\3\2\2\2CA\3\2\2\2DE\7\b\2\2EF\5\b\5\2FG\7\4\2\2G]\3\2\2\2"+
+		"HI\7\t\2\2IJ\7\24\2\2JN\7\6\2\2KM\7\24\2\2LK\3\2\2\2MP\3\2\2\2NL\3\2\2"+
+		"\2NO\3\2\2\2OQ\3\2\2\2PN\3\2\2\2QU\7\7\2\2RT\7\24\2\2SR\3\2\2\2TW\3\2"+
+		"\2\2US\3\2\2\2UV\3\2\2\2VX\3\2\2\2WU\3\2\2\2XY\7\b\2\2YZ\5\b\5\2Z[\7\4"+
+		"\2\2[]\3\2\2\2\\\64\3\2\2\2\\H\3\2\2\2]\7\3\2\2\2^d\5\22\n\2_d\5\16\b"+
+		"\2`d\5\20\t\2ad\5\n\6\2bd\5\f\7\2c^\3\2\2\2c_\3\2\2\2c`\3\2\2\2ca\3\2"+
+		"\2\2cb\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2f\t\3\2\2\2ge\3\2\2\2hl\7"+
+		"\6\2\2ik\5\22\n\2ji\3\2\2\2kn\3\2\2\2lj\3\2\2\2lm\3\2\2\2mo\3\2\2\2nl"+
+		"\3\2\2\2op\7\b\2\2p\13\3\2\2\2qv\7\n\2\2ru\5\22\n\2su\5\16\b\2tr\3\2\2"+
+		"\2ts\3\2\2\2ux\3\2\2\2vt\3\2\2\2vw\3\2\2\2wy\3\2\2\2xv\3\2\2\2yz\7\13"+
+		"\2\2z\r\3\2\2\2{|\7\f\2\2|}\5\b\5\2}~\7\r\2\2~\17\3\2\2\2\177\u0080\7"+
+		"\16\2\2\u0080\u008a\7\24\2\2\u0081\u0082\7\16\2\2\u0082\u0084\7\6\2\2"+
+		"\u0083\u0085\7\24\2\2\u0084\u0083\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0084"+
+		"\3\2\2\2\u0086\u0087\3\2\2\2\u0087\u0088\3\2\2\2\u0088\u008a\7\b\2\2\u0089"+
+		"\177\3\2\2\2\u0089\u0081\3\2\2\2\u008a\21\3\2\2\2\u008b\u0092\7\20\2\2"+
+		"\u008c\u0092\7\21\2\2\u008d\u0092\7\22\2\2\u008e\u0092\7\17\2\2\u008f"+
+		"\u0092\7\23\2\2\u0090\u0092\t\2\2\2\u0091\u008b\3\2\2\2\u0091\u008c\3"+
+		"\2\2\2\u0091\u008d\3\2\2\2\u0091\u008e\3\2\2\2\u0091\u008f\3\2\2\2\u0091"+
+		"\u0090\3\2\2\2\u0092\23\3\2\2\2\24\27\35$&/:ANU\\celtv\u0086\u0089\u0091";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

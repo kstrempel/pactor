@@ -36,7 +36,7 @@ class TestSequences:
 
   def test_reduce_like(self):
     script = """
-    0 (1 2 3 4 5 6 7) [ + ] reduce seq2stack
+    (1 2 3 4 5 6 7) 0 [ + ] reduce
     """
     stack = self.__run_script(script)
     assert stack.pop().value == 28
