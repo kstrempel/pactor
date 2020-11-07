@@ -1,6 +1,12 @@
+USING: io;
+
 ::tostring (n -- s)
-  { 1 "one"
-    2 "two"
-    3 "three" }
-  "unknown"
-  case ;
+  { 1 ["one"]
+    2 ["two"]
+    3 ["three"]
+    :default [str]}
+  case call;
+
+1 tostring print
+2 tostring print
+3 tostring print

@@ -9,6 +9,7 @@ from pactor.nodes_stack import *
 from pactor.nodes_using import *
 from pactor.nodes_python import *
 from pactor.nodes_sequence import *
+from pactor.nodes_dictionary import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -66,6 +67,8 @@ class ASTVisitor(ParseTreeVisitor):
         elif word == 'filter': self.ast.add_node(FilterNode(ctx))
         elif word == 'reduce': self.ast.add_node(ReduceNode(ctx))
         elif word == 'seq2stack': self.ast.add_node(Seq2StackNode(ctx))
+        elif word == 'keys': self.ast.add_node(KeysDictNode(ctx))
+        elif word == 'update': self.ast.add_node(UpdateDictNode(ctx))
         else:
           self.ast.add_node(CallWordOrVariableNode(word, ctx))
 
@@ -135,4 +138,15 @@ class ASTVisitor(ParseTreeVisitor):
         return result
 
     def visitCreateDictionary(self, ctx:PactorParser.CreateDictionaryContext):
-        return self.visitChildren(ctx)
+        self.ast_increase()
+        result = self.visitChildren(ctx)
+        elements_ast = self.ast_decrease()
+        self.ast.add_node(DictNode(elements_ast.nodes,ctx))
+        return result
+
+    def visitCreateDictionaryEntry(self, ctx:PactorParser.CreateDictionaryEntryContext):
+        self.ast_increase()
+        result = self.visitChildren(ctx)
+        entry_ast = self.ast_decrease()
+        self.ast.add_node(DictEntry(entry_ast.nodes[0], entry_ast.nodes[1]))
+        return result

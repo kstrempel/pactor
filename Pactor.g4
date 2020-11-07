@@ -22,7 +22,11 @@ array
 ;
 
 dictionary
-: '{' (statement|quote)* '}' #createDictionary
+: '{' dictionary_entry* '}' # createDictionary
+;
+
+dictionary_entry
+: key_value (quote|statement) # createDictionaryEntry
 ;
 
 quote
@@ -35,12 +39,20 @@ block_commands
 ;
 
 statement
-: value=NUMBER             # pushNumberToStack
-| value=FLOAT              # pushFloatToStack
-| value=STRING             # pushStringToStack
+: non_key_value
+| key_value
+;
+
+non_key_value
+: value=FLOAT              # pushFloatToStack
 | value=EXPRESSIONS        # pushExpressionToStack
 | value=BOOLEAN            # pushBooleanToStack
 | value=(WORD|MATH_WORDS)  # commandRun
+;
+
+key_value
+: value=NUMBER             # pushNumberToStack
+| value=STRING             # pushStringToStack
 ;
 
 EXPRESSIONS

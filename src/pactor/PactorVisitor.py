@@ -44,6 +44,11 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PactorParser#createDictionaryEntry.
+    def visitCreateDictionaryEntry(self, ctx:PactorParser.CreateDictionaryEntryContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PactorParser#createQuote.
     def visitCreateQuote(self, ctx:PactorParser.CreateQuoteContext):
         return self.visitChildren(ctx)
@@ -54,18 +59,13 @@ class PactorVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PactorParser#pushNumberToStack.
-    def visitPushNumberToStack(self, ctx:PactorParser.PushNumberToStackContext):
+    # Visit a parse tree produced by PactorParser#statement.
+    def visitStatement(self, ctx:PactorParser.StatementContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by PactorParser#pushFloatToStack.
     def visitPushFloatToStack(self, ctx:PactorParser.PushFloatToStackContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PactorParser#pushStringToStack.
-    def visitPushStringToStack(self, ctx:PactorParser.PushStringToStackContext):
         return self.visitChildren(ctx)
 
 
@@ -81,6 +81,16 @@ class PactorVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PactorParser#commandRun.
     def visitCommandRun(self, ctx:PactorParser.CommandRunContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#pushNumberToStack.
+    def visitPushNumberToStack(self, ctx:PactorParser.PushNumberToStackContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PactorParser#pushStringToStack.
+    def visitPushStringToStack(self, ctx:PactorParser.PushStringToStackContext):
         return self.visitChildren(ctx)
 
 

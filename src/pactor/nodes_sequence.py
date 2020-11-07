@@ -10,6 +10,9 @@ class ArrayNode(AstNode):
     push(vm, self)
   def append(self, node: AstNode):
     self.__elements.append(node)
+  @property
+  def elements(self):
+    return self.__elements
   def __repr__(self):
     return '(' + " ".join([str(e) for e in self.__elements]) + ')'
   def __iter__(self):
