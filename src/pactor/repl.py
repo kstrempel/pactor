@@ -48,9 +48,9 @@ def repl():
         line = session.prompt()
         if line == '?':
             print("REPL Commands:")
-            print(" . - remove from stack")
-            print(" .. - delete stack")
-            print(" : - prints all symbols")
+            print(" .  - remove from stack")
+            print(" .. - reset stack")
+            print(" :  - prints all symbols")
         elif line == '.':
           vm.stack.pop()
           print_stack(vm)
