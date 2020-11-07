@@ -69,7 +69,7 @@ def serializedATN():
         buf.write("\u009b\u009e\7\24\2\2\u009c\u009e\t\2\2\2\u009d\u0099")
         buf.write("\3\2\2\2\u009d\u009a\3\2\2\2\u009d\u009b\3\2\2\2\u009d")
         buf.write("\u009c\3\2\2\2\u009e\27\3\2\2\2\u009f\u00a4\7\21\2\2\u00a0")
-        buf.write("\u00a4\7\23\2\2\u00a1\u00a2\7\5\2\2\u00a2\u00a4\7\23\2")
+        buf.write("\u00a4\7\23\2\2\u00a1\u00a2\7\5\2\2\u00a2\u00a4\7\25\2")
         buf.write("\2\u00a3\u009f\3\2\2\2\u00a3\u00a0\3\2\2\2\u00a3\u00a1")
         buf.write("\3\2\2\2\u00a4\31\3\2\2\2\26\35#*,\65@GT[bikr{\u0083\u0090")
         buf.write("\u0093\u0097\u009d\u00a3")
@@ -1191,8 +1191,8 @@ class PactorParser ( Parser ):
             self.value = None # Token
             self.copyFrom(ctx)
 
-        def STRING(self):
-            return self.getToken(PactorParser.STRING, 0)
+        def WORD(self):
+            return self.getToken(PactorParser.WORD, 0)
 
         def accept(self, visitor:ParseTreeVisitor):
             if hasattr( visitor, "visitPushSymbolToStack" ):
@@ -1260,9 +1260,9 @@ class PactorParser ( Parser ):
                 localctx = PactorParser.PushSymbolToStackContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 159
-                localctx.value = self.match(PactorParser.T__2)
+                self.match(PactorParser.T__2)
                 self.state = 160
-                self.match(PactorParser.STRING)
+                localctx.value = self.match(PactorParser.WORD)
                 pass
             else:
                 raise NoViableAltException(self)

@@ -1,1 +1,1 @@
-::case ( key dict -- v ) dict key d>contains? [dict key d>value] [dict 10 d>value] if;
+::case ( key dict -- v ) dict key d>contains? [dict key d>value] [dict :default d>value] if;

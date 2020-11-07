@@ -1056,7 +1056,7 @@ public class PactorParser extends Parser {
 	}
 	public static class PushSymbolToStackContext extends Key_valueContext {
 		public Token value;
-		public TerminalNode STRING() { return getToken(PactorParser.STRING, 0); }
+		public TerminalNode WORD() { return getToken(PactorParser.WORD, 0); }
 		public PushSymbolToStackContext(Key_valueContext ctx) { copyFrom(ctx); }
 	}
 	public static class PushStringToStackContext extends Key_valueContext {
@@ -1098,9 +1098,9 @@ public class PactorParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(159);
-				((PushSymbolToStackContext)_localctx).value = match(T__2);
+				match(T__2);
 				setState(160);
-				match(STRING);
+				((PushSymbolToStackContext)_localctx).value = match(WORD);
 				}
 				break;
 			default:
@@ -1164,7 +1164,7 @@ public class PactorParser extends Parser {
 		"\u009e\7\22\2\2\u009a\u009e\7\20\2\2\u009b\u009e\7\24\2\2\u009c\u009e"+
 		"\t\2\2\2\u009d\u0099\3\2\2\2\u009d\u009a\3\2\2\2\u009d\u009b\3\2\2\2\u009d"+
 		"\u009c\3\2\2\2\u009e\27\3\2\2\2\u009f\u00a4\7\21\2\2\u00a0\u00a4\7\23"+
-		"\2\2\u00a1\u00a2\7\5\2\2\u00a2\u00a4\7\23\2\2\u00a3\u009f\3\2\2\2\u00a3"+
+		"\2\2\u00a1\u00a2\7\5\2\2\u00a2\u00a4\7\25\2\2\u00a3\u009f\3\2\2\2\u00a3"+
 		"\u00a0\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a4\31\3\2\2\2\26\35#*,\65@GT[bi"+
 		"kr{\u0083\u0090\u0093\u0097\u009d\u00a3";
 	public static final ATN _ATN =

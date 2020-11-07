@@ -7,13 +7,10 @@ class VM:
     self.__stack = []
     self.__words = {}
     self.__locals = {}
-    self.__symbols = {}
-
 
   def create_inner_vm(self, stack_size: int):
     vm = VM(self.__ast)
     vm.__words = self.__words
-    vm.__symbols = self.__symbols
     vm.__locals = {}
 
     # pop parameter to inner stack

@@ -11,6 +11,7 @@ from pactor.ast import Ast
 from pactor.compiler import load_script
 from pactor.nodes_blocks import WordNode
 from pactor.runtime_exceptions import InnerPactorRuntimeError
+from pactor.nodes_symbol import SYMBOLS
 
 file_history = FileHistory('.pactor_history')
 
@@ -48,13 +49,17 @@ def repl():
         if line == '?':
             print("REPL Commands:")
             print(" . - remove from stack")
-            print(" x - delete stack")
+            print(" .. - delete stack")
+            print(" : - prints all symbols")
         elif line == '.':
           vm.stack.pop()
           print_stack(vm)
-        elif line == 'x':
+        elif line == '..':
           vm.stack.clear()
           print_stack(vm)
+        elif line == ':':
+          for symbol in SYMBOLS.keys():
+            print(':' + symbol)
         else:
           ast = load_script(line)
           vm.run_ast(ast)
