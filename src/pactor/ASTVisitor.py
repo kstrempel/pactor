@@ -10,6 +10,7 @@ from pactor.nodes_using import *
 from pactor.nodes_python import *
 from pactor.nodes_sequence import *
 from pactor.nodes_dictionary import *
+from pactor.nodes_symbol import *
 from pactor.PactorParser import PactorParser
 
 class ASTVisitor(ParseTreeVisitor):
@@ -155,3 +156,7 @@ class ASTVisitor(ParseTreeVisitor):
         entry_ast = self.ast_decrease()
         self.ast.add_node(DictEntry(entry_ast.nodes[0], entry_ast.nodes[1]))
         return result
+
+    def visitPushSymbolToStack(self, ctx:PactorParser.PushSymbolToStackContext):
+        self.ast.add_node(SymbolNode(ctx.value.text, ctx))
+        return self.visitChildren(ctx)
