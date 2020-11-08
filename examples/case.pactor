@@ -1,12 +1,14 @@
-USING: io;
+USING: io case;
 
 ::tostring (n -- s)
+  n
   { 1 ["one"]
     2 ["two"]
     3 ["three"]
-    :default [str]}
+    :default [n str]}
   case call;
 
 1 tostring print
 2 tostring print
 3 tostring print
+4 tostring print

@@ -11,6 +11,7 @@ from pactor.vm import VM
 from pactor.ast import Ast
 from pactor.repl import repl
 from pactor.runtime_exceptions import InnerPactorRuntimeError
+from pactor.error_listener import SyntaxException
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
@@ -86,9 +87,9 @@ def main(args):
     args = parse_args(args)
     setup_logging(args.loglevel)
     if args.file:
-        ast = load_file(args.file)
-        vm = VM(ast)
         try:
+            ast = load_file(args.file)
+            vm = VM(ast)
             vm.run()
         except InnerPactorRuntimeError as e:
             print(f"Runtime error in {args.file} at [{e.line}:{e.column}]")
@@ -99,6 +100,9 @@ def main(args):
             print("> " + line[:-1])
             print("> " + e.error_arrow)
             print("> " + e.message)
+        except SyntaxException as e:
+            print(f"Syntax Error: {e.message}")
+            print(f"{e.error_arrow}")
         except Exception as e:
             print(f"Error: {e}")
 
