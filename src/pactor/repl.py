@@ -12,6 +12,7 @@ from pactor.compiler import load_script
 from pactor.nodes_blocks import WordNode
 from pactor.runtime_exceptions import InnerPactorRuntimeError
 from pactor.nodes_symbol import SYMBOLS
+from pactor.error_listener import SyntaxException
 
 file_history = FileHistory('.pactor_history')
 
@@ -67,7 +68,10 @@ def repl():
           print_stack(vm)
     except InnerPactorRuntimeError as e:
         print("*** " + e.error_arrow)
-        print("*** " + e.message)
+        print(f"*** Runtime Error: {e.message}")
         print_stack(vm)
+    except SyntaxException as e:
+        print("*** " + e.error_arrow)
+        print(f"*** Syntax Error: {e.message}")
     except Exception as e:
         print(f"Error: {e}")
