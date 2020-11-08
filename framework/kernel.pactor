@@ -1,3 +1,28 @@
 
-:zero? (n--b) n 0 =;
+::nip (y z -- z) z;
 
+::2nip (x y z -- z) z;
+
+::3nip (w x y z -- z) z;
+
+::4nip (v w x y z -- z) z;
+
+::5nip (u v w x y z -- z) z;
+
+::nipd (x y z -- y z) z y;
+
+::2nipd (w x y z -- y z) z y;
+
+::3nipd (v w x y z -- y z) z y;
+
+::4nipd (u v w x y z -- y z) z y;
+
+::5nipd (tt u v w x y z -- y z) z y;
+
+::drop (x -- );
+
+::over (x y -- y x y) y x y;
+
+::rot (x y z -- z y x) x y z;
+
+::swapd (x y z -- y x z) z x y;
