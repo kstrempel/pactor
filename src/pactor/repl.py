@@ -49,18 +49,34 @@ def repl():
         line = session.prompt()
         if line == '?':
             print("REPL Commands:")
-            print(" .  - remove from stack")
-            print(" .. - reset stack")
-            print(" :  - prints all symbols")
+            print(" .                 - remove from stack")
+            print(" ..                - reset stack")
+            print(" .:                 - prints all symbols")
+            print(" .d                 - prints all defined words")
+            print(" .d <word>          - prints documentation of defined <word>")
+            print(" .b                 - prints all builtin words")
+            print(" .b <word>          - prints documentation of defined <word>")
+            print(" .m                 - lists all available modules")
+            print(" .m <module>        - lists all words inside a module ")
+            print(" .m <module> <word> - lists all words inside a module ")
         elif line == '.':
           vm.stack.pop()
           print_stack(vm)
         elif line == '..':
           vm.stack.clear()
           print_stack(vm)
-        elif line == ':':
+        elif line == '.:':
           for symbol in SYMBOLS.keys():
             print(':' + symbol)
+        elif line == '.d':
+          for word in vm.words:
+            print(f"{word}")
+        elif line == '.b':
+          for word in vm.words:
+            print(f"{word}")
+        elif line == '.m':
+          for word in vm.words:
+            print(f"{word}")
         else:
           ast = load_script(line)
           vm.run_ast(ast)

@@ -1,5 +1,12 @@
 USING: io case;
 
+# This is just a comment
+# Another comment
+
+/* this is a comment *?
+
+
+
 ::tostring (n -- s)
   n
   { 1 ["one"]

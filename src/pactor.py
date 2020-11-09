@@ -12,6 +12,7 @@ from pactor.ast import Ast
 from pactor.repl import repl
 from pactor.runtime_exceptions import InnerPactorRuntimeError
 from pactor.error_listener import SyntaxException
+from pactor.language_server import start_ls
 
 __author__ = "kstrempel"
 __copyright__ = "kstrempel"
@@ -63,6 +64,13 @@ def parse_args(args):
         help="prints the stack when script finised",
         action="store_const",
         const=logging.DEBUG)
+    parser.add_argument(
+        "-ls",
+        "--languageserver",
+        dest="language_server",
+        help="starts the language server",
+        action="store_const",
+        const=True)
 
     return parser.parse_args(args)
 
@@ -108,6 +116,9 @@ def main(args):
 
         if(args.stack):
             print(vm.stack)
+    elif args.language_server:
+        print("Starts language server")
+        start_ls()
     else:
         repl()
 

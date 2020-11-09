@@ -1,4 +1,17 @@
-USING: kernel;
+# Module Math
+Contains some common words for standard math functions.
 
-# square -- calculates the square from 1 stack value
-:square ( x -- y) dup *;
+Imports Kernel module
+
+```
+USING: kernel;
+```
+
+## square
+calculates the square from 1 stack value
+
+```
+:square ( x -- y) ?
+!! calculates the square
+dup *;
+```

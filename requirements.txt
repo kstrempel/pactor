@@ -1,2 +1,3 @@
 antlr4-python3-runtime==4.8
 prompt-toolkit==3.0.8
+pygls==0.9.1

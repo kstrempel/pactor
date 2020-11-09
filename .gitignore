@@ -55,3 +55,9 @@ venv/
 
 # antlr
 .antlr/
+
+# vscode extensions generated code
+vsc/pactor/out
+vsc/pactor/node_modules
+vsc/pactor/.vscode-test/
+vsc/pactor/*.vsix
